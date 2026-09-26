@@ -1,7 +1,8 @@
 'use strict';
 
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
-let score = 20;
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
+const INITIAL_SCORE = 20;
+let score = INITIAL_SCORE; // This track the current game score
 
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
@@ -16,7 +17,7 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.number').textContent = secretNumber;
 
     document.querySelector('body').style.backgroundColor = '#60b347';
-    document.querySelector('.number').style.width='30rem';
+    document.querySelector('.number').style.width = '30rem';
 
     // When guess is too high
   } else if (guess > secretNumber) {
@@ -38,4 +39,22 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.score').textContent = 0;
     }
   }
+});
+
+// Player can play game again after win or lost game functionality
+document.querySelector('.again').addEventListener('click', function () {
+  // Reset the game logic state
+  score = INITIAL_SCORE;
+  // Reset hidden secrete number
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+  // Reset the user interface text, guess number to ?, input box, message, score ui text
+  document.querySelector('.score').textContent = score;
+  document.querySelector('.number').textContent = '?';
+  document.querySelector('.message').textContent = 'Start guessing...';
+  document.querySelector('.guess').value = '';
+
+  // Reset background colors and width 15rem
+  document.querySelector('body').style.backgroundColor = '#222';
+  document.querySelector('.number').style.width = '15rem';
 });
