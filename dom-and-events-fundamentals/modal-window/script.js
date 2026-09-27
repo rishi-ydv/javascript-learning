@@ -5,7 +5,6 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.close-modal');
 const btnsOpenModal = document.querySelectorAll('.show-modal');
 
-
 // Opens the UI modal and reveals the background overlay.
 const openModal = function () {
   modal.classList.remove('hidden');
@@ -24,3 +23,10 @@ const closeModal = function () {
 
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
+
+// Listen for keyboard events and close the modal if Escape is pressed
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    closeModal();
+  }
+});
