@@ -129,5 +129,87 @@ calcAge1(2000);
 */ //here also
 
 /////////////////////////////////////////////////////////////
+//Hoisting and tdz in practice
+/*
+// Variables
+console.log(hello); // undefined
+//console.log(job);
+//  Uncaught ReferenceError: Cannot access 'job' before initialization
+//     at script.js:136:13
+//console.log(year);
+// Uncaught ReferenceError: Cannot access 'year' before initialization
+//     at script.js:137:13
 
+var hello = 'Rishi';
+let job = 'Programmer';
+const year = 2004;
 
+// Functions
+
+console.log(addDecl(2, 5)); // 7 output
+//console.log(addExpConst(2,5));
+// Uncaught ReferenceError: Cannot access 'addExpConst' before initialization
+// at script.js:149:13 (Due to tdz of const/let)
+
+// console.log(addExpVar(2,5));
+// Function expressions assigned to `var` are not fully hoisted.
+// Only the variable declaration is hoisted and initialized as `undefined`.
+// Therefore, calling `addExpVar()` before the assignment results in:
+//
+// TypeError: addExpVar is not a function
+// Uncaught TypeError: addExpVar is not a function
+//     at script.js:153:13  
+
+// console.log(addArrowConst(2,5));
+//  Uncaught ReferenceError: Cannot access 'addArrowConst' before initialization
+//     at script.js:162:13
+
+//console.log(addArrowVar(2,5));
+// Same as `addExpVar`.
+// The variable is hoisted and initialized as `undefined`,
+// so calling it before assignment throws a TypeError.
+
+function addDecl(a, b) {
+  return a + b;
+}
+
+const addExpConst = function (a, b) {
+  return a + b;
+};
+
+var addExpVar = function (a, b) {
+  return a + b;
+};
+
+const addArrowConst = (a, b) => a + b;
+var addArrowVar = (a, b) => a + b;
+
+// Example
+console.log(numProducts); // undefined
+console.log(!numProducts); // true
+if(!numProducts) deleteShoppingCart();
+
+var numProducts = 15;
+
+function deleteShoppingCart() {
+  console.log('All proudcts deleted');
+}
+
+var x = 1; // Creates a property on the global `window` object.
+
+let y = 2; // Does not create a property on the global `window` object.
+
+const z = 3; // Does not create a property on the global `window` object.
+
+console.log(x === window.x); // true
+console.log(window.x); // 1
+console.log(y === window.y); // false
+console.log(window.y); // undefined 
+// `let` variables are not added to the global `window` object.
+// `window` does not have a property named `y`.
+// When we access a property that does not exist on an object,
+// JavaScript returns `undefined`.
+console.log(z === window.z); // false
+console.log(window.z);  // undefine
+*/
+////////////////////////////////////////////////////////////////////
