@@ -213,3 +213,71 @@ console.log(z === window.z); // false
 console.log(window.z);  // undefine
 */
 ////////////////////////////////////////////////////////////////////
+// This keyword in practice
+/*
+console.log(this); // In the global scope, `this` refers to the `window` object.
+
+const calcAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log(this);
+  // In strict mode, `this` is `undefined` inside a regular function.
+  // In non-strict (sloppy) mode, it refers to the global `window` object.
+};
+calcAge(2000);
+
+const calcAgeArrow = birthYear => {
+  console.log(2037 - birthYear);
+  console.log(this);
+  // Arrow functions do not have their own `this`.
+  // They inherit `this` from their lexical (parent) scope.
+  // Here, the parent scope is the global scope, so `this` is `window`.
+};
+
+calcAgeArrow(2000);
+
+const rishi = {
+  year: 2000,
+  calcAge: function () {
+    console.log(this);
+    // `this` refers to the `rishi` object.
+    //     {year: 2000, calcAge: ƒ}
+    // calcAge
+    // :
+    // ƒ ()
+    // year
+    // :
+    // 2000
+    // [[Prototype]]
+    // :
+    // Object
+
+    console.log(2037 - this.year);
+  },
+};
+rishi.calcAge();
+// Note : this keyword alway point the obj that is calling the method below you can see by example
+// The value of `this` depends on how the function is called.
+
+const bishal = {
+  year: 2009,
+};
+
+bishal.calcAge = rishi.calcAge;
+bishal.calcAge(); // 28
+// {year: 2009, calcAge: ƒ}
+// calcAge
+// :
+// ƒ ()
+// year
+// :
+// 2009
+
+const f = bishal.calcAge;
+f();
+// The method is detached from its object.
+// Since `f()` is called as a regular function,
+// `this` is `undefined` in strict mode.
+// Uncaught TypeError: Cannot read properties of undefined (reading 'year')
+//     at calcAge (script.js:249:29)
+//     at script.js:270:1
+*/
