@@ -1,4 +1,4 @@
-'use-strict';
+'use strict';
 
 // Selecting elements
 const player0El = document.getElementsByClassName('player--0')[0];
