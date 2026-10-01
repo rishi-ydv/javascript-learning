@@ -371,6 +371,91 @@ const addArrow = (a, b) => {
 */
 
 ///////////////////////////////////////////////////////////////////
+//  Object References in Practice (Shallow vs. Deep Copies)
+/*
+const rishi = {
+  firstName: 'Rishi',
+  lastName: 'Yadav',
+  age: 22,
+};
+
+// Objects are passed by reference.
+// `originalPerson` and `rishi` refer to the same object.
+// The function receives a reference to the original object,
+// not a copy of the object.
+function persons(orignalPerson, newFirstName) {
+  orignalPerson.firstName = newFirstName;
+  return orignalPerson;
+}
+
+const rahul = persons(rishi, 'Rahul');
+
+// Both objects show "Rahul" because they reference
+// the same underlying object.
+console.log(rishi);
+console.log(rahul);
+
+// let bishal = rishi;
+// bishal.firstName = 'Bishal';
+
+
+// Both variables reference the same object.
+// Changing `bishal.firstName` also changes `rishi.firstName`.
+// `bishal` is not a copy.
+// It stores the same object reference as `rishi`.
+// console.log('Before', rishi);
+// console.log('After', bishal);
 
 
 
+// Reassigning a `const` variable throws:
+// TypeError: Assignment to constant variable.
+// rishi = {x : 23}; 
+
+
+//bishal = {x : 23}; // No error is thrown because `let` variables can be reassigned.
+//console.log(bishal); // overwrites the reference instead of adding a property to rishi
+
+
+// Allowed because `const` prevents reassignment,
+// not object mutation.
+rishi.x = '23';  // `const` protects the reference, not the object's contents.
+
+
+const rohit = {
+  firstName: 'Rohit',
+  lastName: 'Sharma',
+  age: 37,
+  family: ['Alice', 'Bob'],
+};
+
+
+// A shallow copy copies top-level properties only.
+// Nested objects and arrays are still shared by reference.
+// Therefore, changes to `family` affect both objects.
+// Spread syntax creates a shallow copy.
+// Nested values remain shared references.
+const rohitCopy = { ...rohit };
+rohitCopy.lastName = 'Yadav';
+
+// rohitCopy.family.push('Mary');
+// rohitCopy.family.push('John');
+
+// console.log('Before', rohit);
+// console.log('After', rohitCopy);
+
+
+// Deep copy/clone
+// `structuredClone()` creates a deep copy.
+// Nested objects and arrays are copied independently.
+const rohitClone = structuredClone(rohit);
+rohitClone.family.push('Mary');
+rohitClone.family.push('John');
+// The original object remains unchanged,
+// even when items are added to the cloned array.
+// Deep cloning creates completely independent copies.
+console.log('Original'); 
+console.table( rohit);
+console.log('Clone');
+console.table(rohitClone);
+*/
