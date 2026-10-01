@@ -281,3 +281,96 @@ f();
 //     at calcAge (script.js:249:29)
 //     at script.js:270:1
 */
+
+/////////////////////////////////////////////////////
+// Regular Functions vs. Arrow Functions
+
+/*
+//var firstName = 'Bishal';// Variables declared with `var` in the global scope become properties of the global `window` object.
+const rishi = {
+  firstName: 'Rishi',
+  year: 2000,
+
+  calAge: function () {
+    // this is a regular function
+    console.log(this); // `this` refers to the object that calls the method.Since `rishi` calls `calAge()`, `this` points to `rishi`.
+    console.log(2037 - this.year);
+
+    const self = this; // Store the current `this` reference in a variable.
+    // Solution 1 : Use a closure variable (`self`)
+    const isGenZ = function () {
+      console.log(this); // undefined (regular function in strict mode)
+      console.log(self); // `self` stores the `this` value from the outer scope (`rishi`).
+      //console.log(this.year >= 1997 && this.year <= 2012); // throw typeerror cannot read properties of undefined year
+      // Access the preserved object through `self`.
+      console.log(self.year >= 1997 && self.year <= 2012); // true
+
+      // `isGenZ()` is called as a regular function.
+      // In strict mode, `this` inside a regular function is `undefined`.
+      // `self` stores the outer `this` value (`rishi`).
+      // When `isGenZ()` accesses `self`, JavaScript finds it
+      // through the scope chain and uses the stored object.
+    };
+
+    // Solution 2: Use an arrow function
+    // Arrow functions do not have their own `this`.
+    // They inherit `this` from their lexical (parent) scope.
+    // Here, the parent scope is `calAge()`, so `this` refers to `rishi`.
+    // eliminating the need for `self = this`.
+    const isGenZ1 = () => {
+      console.log('Arrow function');
+      console.log(this);
+      console.log(this.year >= 1997 && this.year <= 2012);
+    };
+
+    isGenZ();
+    isGenZ1();
+  },
+
+  greet: () => {
+    console.log(this);
+    console.log(this.firstName);
+    // Arrow functions do not have their own `this`.
+    // Instead, they inherit `this` from the surrounding scope.
+    //
+    // In this example, the surrounding scope is the global scope,
+    // so `this` refers to the `window` object.
+    //
+    // Therefore, `this.firstName` is equivalent to
+    // `window.firstName`.
+    // This behavior is one reason why `let` and `const`
+    // are generally preferred over `var`.
+  },
+};
+
+rishi.greet();
+rishi.calAge();
+
+// Argument keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  console.log(arguments[2]); // 6
+  return a + b;
+};
+addExpr(2,5);
+addExpr(2,5,6,7); 
+// A regular function can receive more arguments
+// than the number of declared parameters.
+// Extra arguments are still available through `arguments`.
+// Arguments can be accessed using an index
+// or by looping through the `arguments` object.
+
+const addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+
+//addArrow(2,5,7);
+// Unlike regular functions, arrow functions do not
+// provide an `arguments` object.
+*/
+
+///////////////////////////////////////////////////////////////////
+
+
+
