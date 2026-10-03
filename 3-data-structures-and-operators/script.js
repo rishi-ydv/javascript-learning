@@ -41,7 +41,80 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`,
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicious pasta with ${ing1},${ing2},${ing3},`);
+  },
 };
+
+/*
+/////////////////////////////////////////////////////////
+// // Spread Operator (...)
+
+const arr = [7, 8, 9];
+// Manually creating a new array using individual elements
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArr);
+
+// Spread expands all elements of `arr`
+const newArr = [1, 2, ...arr];
+console.log(newArr);
+
+// Spread passes each element as a separate value
+console.log(...newArr);
+
+// Add a new item while creating a new array
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
+
+// Create a shallow copy of the array
+const mainMenuCopy = [...restaurant.mainMenu];
+
+// Join two arrays
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(menu);
+
+// Spread works on iterables:
+// Arrays, Strings, Maps, Sets, etc.
+// Plain objects are not iterable.
+const str = 'Rishi';
+// Strings are iterable, so they can be spread into characters
+const letters = [...str, ' ', 's'];
+console.log(letters);
+console.log(...str);
+// Uncaught SyntaxError: Unexpected token '...'
+// console.log(`${...str} Rishi`);
+
+// Real-world examples
+// const ingredients = [
+//   prompt("Let's make pasta! Ingredient 1?"),
+//   prompt("Let's make pasta! Ingredient 2?"),
+//   prompt("Let's make pasta! Ingredient 3?"),
+// ];
+//console.log(ingredients);
+
+// Traditional approach
+//restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+//restaurant.orderPasta(...ingredients); // Cleaner ES6 approach using the spread operator.
+
+// Create a new object by copying existing properties
+// and adding new ones
+const newResturant = {
+  foundedIn: 1998,
+  ...restaurant,
+  founder: 'Guiseppe',
+};
+
+// Create a shallow copy of the object
+// Spread creates a shallow copy.
+// Nested objects and arrays are still shared by reference.
+const restaurantCopy = { ...restaurant };
+// Changing the copied object does not affect
+// top-level properties of the original object
+restaurantCopy.name = 'Ristorante Roma';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
+*/
 
 /*
 //////////////////////////////////////////////////////////
