@@ -45,11 +45,87 @@ const restaurant = {
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta with ${ing1},${ing2},${ing3},`);
   },
+
+  orderPizza: function(mainIngredient, ...otherIngredient) {
+    console.log(mainIngredient);
+    console.log(otherIngredient);
+  }
 };
 
 /*
 /////////////////////////////////////////////////////////
+// Rest Pattern and Rest Parameters
+
+// Rest collects multiple values
+// and packs them into an array.
+
+// The syntax is the same (`...`),
+// but the behavior depends on the context.
+//
+// Spread  -> Expands values
+// Rest    -> Collects values
+
+// 1. Destructuring
+// Arrays
+// Spread syntax is used on the right side of `=`.
+// Spread expands array elements into individual values.
+const arr = [1, 2, ...[3, 4]];
+
+
+// Rest syntax is used on the left side of `=`.
+// Rest collects remaining values.
+
+// Collect remaining elements into `others`.
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+
+
+// Rest must appear at the end because it collects
+// all remaining elements.
+// Extract the first two items and collect the rest.
+const [Pizza, risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(Pizza, risotto, otherFood);
+
+
+// Objects
+// Extract `sat` and collect the remaining properties.
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+// 2.  Functions
+// The rest parameter gathers an unknown number
+// of arguments into an array.
+
+// Accept any number of arguments.
+const add = function(...numbers) {
+  console.log(numbers);
+  let sum = 0;
+  // Calculate the sum of all numbers.
+  for(let i = 0; i < numbers.length; i++){
+    sum += numbers[i];
+  }
+  console.log(sum);
+}
+add(2,3);
+add(4,5,6,7);
+add(8,9,10,11,12,13);
+
+const x = [23, 5, 7];
+// Spread the array into individual arguments.
+add(...x);
+
+// First argument becomes `mainIngredient`.
+// Remaining arguments are collected into `otherIngredient`.
+restaurant.orderPizza('mushroom','onion', 'olives', 'spinach');
+// First argument becomes `mainIngredient`.
+// otherIngredient return empty array []
+restaurant.orderPizza('mushroom');
+*/
+
+/*
+/////////////////////////////////////////////////////////
 // // Spread Operator (...)
+//Spread  operator unpack 
 
 const arr = [7, 8, 9];
 // Manually creating a new array using individual elements
