@@ -53,6 +53,33 @@ const restaurant = {
 };
 
 /*
+///////////////////////////////////////
+// Nullish Coalescing Operator (??)
+
+// OR (||) returns the first truthy value.
+// Since 0 is falsy, 10 is returned instead.
+restaurant.numGuests = 0;
+
+const guests = restaurant.numGuests || 10;
+
+console.log(guests); // 10
+
+
+// Nullish values are only:
+// - null
+// - undefined
+
+// `??` returns the right-hand value only when
+// the left-hand value is null or undefined.
+
+// Since 0 is a valid value (not nullish),
+// it is preserved.
+const guestCorrect = restaurant.numGuests ?? 10;
+
+console.log(guestCorrect); // 0
+*/
+
+/*
 /////////////////////////////////////////////////////////
 // Short Circuiting (|| AND &&)
 
