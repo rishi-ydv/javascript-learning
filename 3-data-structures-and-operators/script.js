@@ -54,6 +54,69 @@ const restaurant = {
 
 /*
 ///////////////////////////////////////
+// Logical Assignment Operators
+//
+// ||=   OR Assignment
+// ??=   Nullish Assignment
+// &&=   AND Assignment
+
+const rest1 = {
+  name: 'Capri',
+  // numGuests: 20,
+  numGuests: 0,
+};
+
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+};
+
+// OR Assignment Operator (||=)
+
+// Assign the value only if the current value is falsy.
+//
+// Equivalent to:
+// rest.numGuests = rest.numGuests || 10
+//
+// Be careful:
+// 0, '', and false are considered falsy.
+
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+
+// Nullish Assignment Operator (??=)
+
+// Assign the value only if the current value is
+// null or undefined.
+//
+// Equivalent to:
+// rest.numGuests = rest.numGuests ?? 10
+//
+// Unlike ||=, it preserves valid values such as
+// 0, false, and ''.
+
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+
+// AND Assignment Operator (&&=)
+
+// Assign the value only if the current value is truthy.
+//
+// Equivalent to:
+// rest.owner = rest.owner && '<ANONYMOUS>'
+//
+// Useful for conditionally updating existing properties.
+
+rest1.owner &&= '<ANONYMOUS>';
+rest2.owner &&= '<ANONYMOUS>';
+
+console.log(rest1);
+console.log(rest2);
+
+/*
+///////////////////////////////////////
 // Nullish Coalescing Operator (??)
 
 // OR (||) returns the first truthy value.
