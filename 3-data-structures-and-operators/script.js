@@ -54,6 +54,72 @@ const restaurant = {
 
 /*
 /////////////////////////////////////////////////////////
+// Short Circuiting (|| AND &&)
+
+// Logical operators don't always return true or false.
+// They can return any value.
+
+// OR (||)
+// Returns the first truthy value.
+// If all values are falsy, it returns the last value.
+
+console.log('---- OR ----');
+
+console.log(3 || 'Rishi');          // 3
+console.log('' || 'Rishi');         // 'Rishi'
+console.log(true || 0);             // true
+console.log(undefined || null);     // null
+
+// Stops at the first truthy value ('Hello')
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+
+// Using OR to set default values
+
+restaurant.numGuests = 0;
+
+// Traditional approach using the ternary operator
+const guests1 = restaurant.numGuests
+  ? restaurant.numGuests
+  : 10;
+
+console.log(guests1);
+
+// OR returns the first truthy value.
+// Since 0 is falsy, 10 is returned instead.
+const guests2 = restaurant.numGuests || 10;
+
+console.log(guests2);
+
+
+// AND (&&)
+
+console.log('---- AND ----');
+
+// AND returns the first falsy value.
+// If all values are truthy, it returns the last value.
+
+console.log(0 && 'Rishi');      // 0
+console.log(7 && 'Rishi');      // 'Rishi'
+
+// Stops at the first falsy value (null)
+console.log('Hello' && 23 && null && 'Rishi');
+// Practical Example
+
+// Traditional way
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+// Short-circuiting version
+// If orderPizza exists, call it.
+// Otherwise, the function call is skipped.
+restaurant.orderPizza &&
+  restaurant.orderPizza('mushrooms', 'spinach');
+*/
+
+/*
+/////////////////////////////////////////////////////////
 // Rest Pattern and Rest Parameters
 
 // Rest collects multiple values
