@@ -101,6 +101,71 @@ const restaurant = {
 
 /*
 ///////////////////////////////////////
+// Looping Objects: Keys, Values, and Entries
+
+// Object.keys()    -> returns property names
+// Object.values()  -> returns property values
+// Object.entries() -> returns [key, value] pairs
+
+
+// Object.keys()
+
+// Returns an array containing all property names (keys).
+const properties = Object.keys(openingHours);
+
+console.log(properties);
+// ['thu', 'fri', 'sat']
+
+
+// Loop through all property names
+
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+
+console.log(openStr);
+
+// Object.values()
+
+// Returns an array containing all property values.
+const values = Object.values(openingHours);
+
+console.log(values);
+
+
+// Object.entries()
+
+// Returns an array of [key, value] pairs.
+const entries = Object.entries(openingHours);
+
+// Example:
+// [
+//   ['thu', { open: 12, close: 22 }],
+//   ['fri', { open: 11, close: 23 }],
+//   ['sat', { open: 0, close: 24 }]
+// ]
+
+// console.log(entries);
+
+
+// Loop through key-value pairs
+// Destructure each entry:
+//
+// ['thu', { open: 12, close: 22 }]
+//
+// day   -> 'thu'
+// open  -> 12
+// close -> 22
+for (const [day, { open, close }] of entries) {
+  console.log(
+    `On ${day} we open at ${open} and close at ${close}`
+  );
+}
+
+/*
+///////////////////////////////////////
 // Optional Chaining (?.)
 // stops evaluation if a value is null or undefined.
 // Optional chaining safely accesses properties,
