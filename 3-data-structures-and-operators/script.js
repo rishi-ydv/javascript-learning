@@ -52,6 +52,39 @@ const restaurant = {
   }
 };
 
+/*
+///////////////////////////////////////
+// The for...of Loop
+
+// Combine both arrays into a single menu array.
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// Iterate over array values
+
+// `for...of` loops through each element of the array.
+for (const item of menu) {
+  console.log(item);
+}
+
+
+// Access both index and value
+
+// `entries()` returns an iterator containing:
+// [index, value] pairs.
+//
+// Example:
+// [0, 'Focaccia']
+// [1, 'Bruschetta']
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+
+// Convert the iterator into an array
+
+// console.log([...menu.entries()]);
+
+
 //////////////////////////////////////
 // Coding Challenge #1
 
