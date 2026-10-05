@@ -1,3 +1,63 @@
+'use strict';
+
+
+
+/////////////////////////////////////////////////////////
+// Enhanced Object Literals (ES6)
+//
+// ES6 introduced:
+//
+// 1. Property shorthand
+//    openingHours: openingHours  -> openingHours
+//
+// 2. Method shorthand
+//    orderPizza: function() {}   -> orderPizza()
+//
+// 3. Computed property names
+//    [weekdays[3]] -> "thu"
+//
+// Before:
+// openingHours: openingHours
+//
+// After:
+// openingHours
+//
+// Before:
+// orderPizza: function() {}
+//
+// After:
+// orderPizza()
+//
+// Property names can also be computed dynamically
+// using square brackets [].
+
+
+// Array containing day names used to create dynamic property names.
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// ES6 Computed Property Names
+//
+// Property names can be generated dynamically using
+// expressions inside square brackets ([]).
+// Nested object containing opening hours
+const openingHours = {
+  [weekdays[3]]: {
+    // Creates the property "thu"
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    // Creates the property "fri"
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    // Creates the property "sat"
+    open: 0,
+    close: 24,
+  },
+};
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -9,47 +69,34 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  // Nested object containing opening hours
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  // ES6 enhanced object literals
+  // Property shorthand
+  // Equivalent to: openingHours: openingHours
+  openingHours,
 
   // Returns selected starter and main course
   order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
+  // Enhanced method syntax
+  // Equivalent to:
+  // orderDelivery: function (...) { ... }
   // Destructures the order object directly in the parameter list
-  orderDelivery: function ({
-    starterIndex = 1,
-    mainIndex = 0,
-    time = '20.00',
-    address,
-  }) {
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20.00', address }) {
     console.log(
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`,
     );
   },
-
-  orderPasta: function (ing1, ing2, ing3) {
+  // ES6 method definition shorthand
+  orderPasta(ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta with ${ing1},${ing2},${ing3},`);
   },
-
-  orderPizza: function(mainIngredient, ...otherIngredient) {
+  // Method shorthand with a rest parameter
+  orderPizza(mainIngredient, ...otherIngredient) {
     console.log(mainIngredient);
     console.log(otherIngredient);
-  }
+  },
 };
 
 /*
