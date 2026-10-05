@@ -101,6 +101,85 @@ const restaurant = {
 
 /*
 ///////////////////////////////////////
+// Optional Chaining (?.)
+// stops evaluation if a value is null or undefined.
+// Optional chaining safely accesses properties,
+// methods, or array elements that may not exist.
+//
+// Instead of throwing an error,
+// it returns `undefined`.
+
+
+// Traditional Approach
+
+// Check if each property exists before accessing it.
+if (restaurant.openingHours && restaurant.openingHours.mon) {
+  console.log(restaurant.openingHours.mon.open);
+}
+
+// Without the check above, this would throw:
+// TypeError: Cannot read properties of undefined
+
+// console.log(restaurant.openingHours.mon.open);
+
+
+// Using Optional Chaining
+
+// Returns undefined if `mon` does not exist.
+console.log(restaurant.openingHours.mon?.open);
+
+// Safer version.
+// Checks both `openingHours` and `mon`.
+console.log(restaurant.openingHours?.mon?.open);
+
+
+// Real-World Example
+
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// Access opening hours only if the day exists.
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+
+// Optional Chaining with Methods
+
+// Call the method only if it exists.
+console.log(
+  restaurant.order?.(0, 1) ?? 'Method does not exist'
+);
+
+// `orderRisotto` does not exist,
+// so undefined is returned.
+console.log(
+  restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist'
+);
+
+
+// Optional Chaining with Arrays
+
+const users = [{ name: 'Rishi', email: 'hello@rishi.io' }];
+// const users = [];
+
+// Access the first user's name only if
+// the first array element exists.
+console.log(users[0]?.name ?? 'User array empty');
+
+
+// Traditional Approach
+
+if (users.length > 0) {
+  console.log(users[0].name);
+} else {
+  console.log('User array empty');
+}
+
+
+/*
+///////////////////////////////////////
 // The for...of Loop
 
 // Combine both arrays into a single menu array.
