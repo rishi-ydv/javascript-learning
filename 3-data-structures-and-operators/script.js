@@ -101,6 +101,100 @@ const restaurant = {
 
 /*
 ///////////////////////////////////////
+// New Set Operations (ES2025+)
+
+// Set Operations
+//
+// intersection()         -> common values
+// union()                -> all unique values
+// difference()           -> values only in first set
+// symmetricDifference() -> values not shared
+// isDisjointFrom()       -> no common values?
+
+
+// These methods return NEW sets.
+// The original sets are not modified.
+
+const italianFoods = new Set([
+  'pasta',
+  'gnocchi',
+  'tomatoes',
+  'olive oil',
+  'garlic',
+  'basil',
+]);
+
+const mexicanFoods = new Set([
+  'tortillas',
+  'beans',
+  'rice',
+  'tomatoes',
+  'avocado',
+  'garlic',
+]);
+
+
+// intersection()
+
+// Returns values that exist in BOTH sets.
+const commonFoods = italianFoods.intersection(mexicanFoods);
+
+console.log('Intersection:', commonFoods);
+console.log([...commonFoods]);
+
+
+// union()
+
+// Returns all unique values from both sets.
+const italianMexicanFusion =
+  italianFoods.union(mexicanFoods);
+
+console.log('Union:', italianMexicanFusion);
+
+
+// Traditional way before union()
+
+// Create a new Set from both collections.
+console.log(
+  [...new Set([...italianFoods, ...mexicanFoods])]
+);
+
+
+// difference()
+
+// Returns values that exist only in italianFoods.
+const uniqueItalianFoods =
+  italianFoods.difference(mexicanFoods);
+
+console.log('Difference italian', uniqueItalianFoods);
+
+// Returns values that exist only in mexicanFoods.
+const uniqueMexicanFoods =
+  mexicanFoods.difference(italianFoods);
+
+console.log('Difference mexican', uniqueMexicanFoods);
+
+
+// symmetricDifference()
+
+// Returns values that exist in either set,
+// but NOT in both sets.
+const uniqueItalianAndMexicanFoods =
+  italianFoods.symmetricDifference(mexicanFoods);
+
+console.log(uniqueItalianAndMexicanFoods);
+
+
+// isDisjointFrom()
+
+// Returns true if the sets have no common values.
+// Returns false if at least one value exists in both sets.
+console.log(
+  italianFoods.isDisjointFrom(mexicanFoods)
+);
+
+/*
+///////////////////////////////////////
 // Sets
 
 // A Set is a collection of unique values.
