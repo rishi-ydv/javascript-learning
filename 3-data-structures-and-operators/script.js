@@ -99,6 +99,104 @@ const restaurant = {
   },
 };
 
+/*
+///////////////////////////////////////
+// Sets
+
+// A Set is a collection of unique values.
+// Duplicate values are automatically removed.
+
+// Sets:
+// - No duplicates
+// - No indexes
+// - Values can be iterated
+
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+
+console.log(ordersSet);
+
+
+// Create a Set from a string
+
+// Strings are iterable,
+// Each character becomes a unique Set element.
+console.log(new Set('Rishi'));
+
+
+// Common Set Methods
+
+// Number of unique elements
+console.log(ordersSet.size);
+
+// Check whether a value exists
+console.log(ordersSet.has('Pizza'));
+console.log(ordersSet.has('Bread'));
+
+// Add a new value
+ordersSet.add('Garlic Bread');
+
+// Duplicate values are ignored
+ordersSet.add('Garlic Bread');
+
+// Remove a value
+ordersSet.delete('Risotto');
+
+// Remove all values
+// ordersSet.clear();
+
+console.log(ordersSet);
+
+
+// Loop through Set values
+
+for (const order of ordersSet) {
+  console.log(order);
+}
+
+
+// Real-World Example
+
+const staff = [
+  'Waiter',
+  'Chef',
+  'Waiter',
+  'Manager',
+  'Chef',
+  'Waiter',
+];
+
+// Remove duplicates by converting:
+// Array -> Set -> Array
+const staffUnique = [...new Set(staff)];
+
+console.log(staffUnique);
+
+
+// Count unique values
+
+console.log(
+  new Set([
+    'Waiter',
+    'Chef',
+    'Waiter',
+    'Manager',
+    'Chef',
+    'Waiter',
+  ]).size
+);
+
+
+// Count unique characters in a string
+
+console.log(new Set('rishiyadav').size);
+
 ///////////////////////////////////////
 // Coding Challenge #2
 
