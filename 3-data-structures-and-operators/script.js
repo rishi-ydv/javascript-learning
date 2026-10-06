@@ -99,6 +99,134 @@ const restaurant = {
   },
 };
 
+
+/*
+///////////////////////////////////////
+// Maps: Fundamentals
+
+// Map keys can be:
+// strings, numbers, booleans,
+// objects, arrays, functions, DOM elements, etc.
+
+// Keys can be any data type.
+
+// Common methods:
+//
+// set(key, value)
+// get(key)
+// has(key)
+// delete(key)
+// clear()
+// size
+
+// Objects and arrays can be used as keys,
+// but they are compared by reference.
+
+// A Map stores data as key-value pairs.
+// Unlike objects, keys can be of any data type.
+
+// Object keys are usually strings or symbols.
+// Map keys can be any data type.
+
+const rest = new Map();
+
+
+// Adding entries
+
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+
+// set() returns the Map itself,
+// allowing method chaining.
+console.log(rest.set(2, 'Lisbon, Portugal'));
+
+
+// Method chaining works because 
+// set() returns the Map itself.
+rest
+  .set('categories', [
+    'Italian',
+    'Pizzeria',
+    'Vegetarian',
+    'Organic',
+  ])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are closed :(');
+
+
+// Retrieving values
+
+console.log(rest.get('name'));
+console.log(rest.get(true));
+console.log(rest.get(1));
+
+
+// Using expressions as keys
+
+const time = 8;
+
+// time > 11 && time < 23
+// evaluates to false
+//
+// Equivalent to:
+// rest.get(false)
+console.log(
+  rest.get(
+    time > rest.get('open') &&
+    time < rest.get('close')
+  )
+);
+
+
+// Check if a key exists
+
+console.log(rest.has('categories'));
+
+
+// Remove an entry
+
+rest.delete(2);
+
+// Remove all entries
+// rest.clear();
+
+
+// Using objects and arrays as keys
+// Arrays are objects,
+// so they can be used as Map keys.
+const arr = [1, 2];
+// The same array reference is used.
+rest.set(arr, 'Test');
+
+// Common mistake many beginners do this 
+//rest.get([1, 2]);
+// expects 'Test' but get undefined because Different array reference.
+// Objects and arrays are compared by reference,
+// not by value.
+
+
+// DOM elements can also be keys
+
+rest.set(
+  document.querySelector('h1'),
+  'Heading'
+);
+
+console.log(rest);
+
+
+// Number of entries in the Map
+
+console.log(rest.size);
+
+
+// Retrieve value using the same array reference
+
+console.log(rest.get(arr));
+
+
 /*
 ///////////////////////////////////////
 // New Set Operations (ES2025+)
