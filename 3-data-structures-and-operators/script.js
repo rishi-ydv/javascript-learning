@@ -99,6 +99,116 @@ const restaurant = {
   },
 };
 
+/*
+///////////////////////////////////////
+// Maps: Iteration
+
+// A Map is iterable by default.
+
+
+// Map Iteration
+//
+// for...of         -> iterate Map entries
+// keys()           -> all keys
+// values()         -> all values
+// entries()        -> all [key, value] pairs
+//
+// Maps are iterable by default.
+
+// Objects are not directly iterable,
+// but Maps are iterable by default.
+
+// Create a Map using an array of [key, value] pairs.
+// Map constructor expects an array
+// of [key, value] pairs.
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct 🎉'],
+  [false, 'Try again!'],
+]);
+
+console.log(question);
+
+
+// Convert Object -> Map
+
+// Object.entries() returns an array of [key, value] pairs,
+// which can be passed directly into the Map constructor.
+// Object.entries()
+// converts an object into [key, value] pairs.
+console.log(Object.entries(openingHours));
+
+const hoursMap = new Map(Object.entries(openingHours));
+
+console.log(hoursMap);
+
+
+// Quiz Application Example
+
+// Retrieve the question text.
+console.log(question.get('question'));
+
+
+// Iterate over the Map
+
+for (const [key, value] of question) {
+
+  // Display only answer options.
+  if (typeof key === 'number') {
+    console.log(`Answer ${key}: ${value}`);
+  }
+}
+
+
+// User answer
+
+// const answer = Number(prompt('Your answer'));
+const answer = 3;
+
+console.log(answer);
+
+
+// Check whether the answer is correct
+
+// question.get('correct') returns 3
+// 3 === answer -> true
+//
+// Equivalent to:
+// question.get(true)
+
+// If the answer is correct:
+// question.get(true)
+//
+// If the answer is wrong:
+// question.get(false)
+console.log(
+  question.get(
+    question.get('correct') === answer
+  )
+);
+
+
+// Convert Map -> Array
+
+// Returns an array of [key, value] pairs.
+// Spread the Map into an array
+// of [key, value] pairs.
+console.log([...question]);
+
+
+// Get all keys
+
+console.log([...question.keys()]);
+
+
+// Get all values
+
+console.log([...question.values()]);
+
 
 /*
 ///////////////////////////////////////
