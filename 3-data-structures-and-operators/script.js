@@ -99,6 +99,71 @@ const restaurant = {
   },
 };
 
+/*
+///////////////////////////////////////
+// String Methods Practice
+
+
+// Processing Flow:
+//
+// 1. Split flights using '+'
+// 2. Split each flight using ';'
+// 3. Extract airport codes
+// 4. Format the output
+// 5. Display delayed flights with 🔴
+
+// String Methods Practice
+//
+// split()       -> parse flight records
+// destructuring -> extract flight data
+// startsWith()  -> detect delayed flights
+// replaceAll()  -> clean formatting
+// padStart()    -> align output
+
+// Flight information received as a single string.
+// Each flight is separated by '+'.
+// Each flight detail is separated by ';'.
+
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+
+// Helper Function
+//
+// Extract the airport code (first 3 characters)
+// and convert it to uppercase.
+//
+// Example:
+// "fao93766109" -> "FAO"
+
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+
+// Process each flight record
+
+for (const flight of flights.split('+')) {
+
+  // Split the flight information into parts.
+  const [type, from, to, time] = flight.split(';');
+
+  // Format the output:
+  //
+  // Delayed flights -> 🔴
+  // Replace "_" with spaces
+  // Extract airport codes
+  // Format time (11:25 -> 11h25)
+
+  const output =
+    `${type.startsWith('_Delayed') ? '🔴' : ''}` +
+    `${type.replaceAll('_', ' ')}` +
+    ` ${getCode(from)}` +
+    ` ${getCode(to)}` +
+    ` (${time.replace(':', 'h')})`
+      .padStart(36);
+
+  console.log(output);
+}
+
 
 
 ///////////////////////////////////////
