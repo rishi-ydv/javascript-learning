@@ -99,6 +99,128 @@ const restaurant = {
   },
 };
 
+
+/*
+///////////////////////////////////////
+// Working With Strings - Part 3
+
+
+// String Utilities
+//
+// split()    -> String → Array
+// join()     -> Array → String
+// padStart() -> Add characters at the beginning
+// padEnd()   -> Add characters at the end
+// repeat()   -> Repeat a string multiple times
+
+// split() and join()
+
+// split() converts a string into an array
+// based on the separator provided.
+
+console.log('a+very+nice+string'.split('+'));
+console.log('Rishi Yadav'.split(' '));
+
+
+// Destructure the resulting array
+
+const [firstName, lastName] = 'Rishi Yadav'.split(' ');
+
+
+// join() converts an array back into a string
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+
+// Capitalize each word in a name
+
+const capitalizeName = function (name) {
+  // Convert the full name into an array of words.
+  const names = name.split(' ');
+
+  const namesUpper = [];
+
+  for (const n of names) {
+
+    // Capitalize the first character of each word.
+
+    // Alternative solution:
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+
+    namesUpper.push(
+      n.replace(n[0], n[0].toUpperCase())
+    );
+  }
+
+  // Convert the array back into a string.
+  console.log(namesUpper.join(' '));
+};
+
+capitalizeName('jessica ann smith davis');
+capitalizeName('rishi yadav');
+
+
+// String Padding
+
+const message = 'Go to gate 23!';
+
+// padStart(targetLength, fillString)
+// padEnd(targetLength, fillString)
+
+console.log(
+  message.padStart(20, '+').padEnd(30, '+')
+);
+
+console.log(
+  'Rishi'.padStart(20, '+').padEnd(30, '+')
+);
+
+
+// Credit Card Masking Example
+
+const maskCreditCard = function (number) {
+
+  // Convert number to string so string methods can be used.
+  const str = number + '';
+
+  // Extract the last 4 digits.
+  const last = str.slice(-4);
+
+  // Pad the beginning with * characters.
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(64637836));
+console.log(maskCreditCard(43378463864647384));
+console.log(maskCreditCard('334859493847755774747'));
+
+
+// repeat()
+
+const message2 =
+  'Bad weather... All Departures Delayed... ';
+
+// Repeat the string 5 times.
+console.log(message2.repeat(5));
+
+
+// Real-world Example
+
+const planesInLine = function (n) {
+
+  // Repeat the airplane emoji n times.
+  console.log(
+    `There are ${n} planes in line ${'🛩'.repeat(n)}`
+  );
+};
+
+planesInLine(5);
+planesInLine(3);
+planesInLine(12);
+
+
+/*
 ///////////////////////////////////////
 // Working With Strings - Part 2
 
@@ -113,9 +235,9 @@ console.log(airline.toUpperCase());
 
 // Fix capitalization in a name
 // Example:
-// "jOnAS" -> "Jonas"
+// "rIsHI" -> "Rishi"
 
-const passenger = 'jOnAS';
+const passenger = 'rIsHI';
 
 const passengerLower = passenger.toLowerCase();
 
@@ -128,8 +250,8 @@ console.log(passengerCorrect);
 
 // Comparing emails
 
-const email = 'hello@jonas.io';
-const loginEmail = '  Hello@Jonas.Io \n';
+const email = 'hello@rishi.io';
+const loginEmail = '  Hello@rishi.Io \n';
 
 // Normalize user input before comparison.
 //
