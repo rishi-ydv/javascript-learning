@@ -99,6 +99,117 @@ const restaurant = {
   },
 };
 
+///////////////////////////////////////
+// Working With Strings - Part 2
+
+const airline = 'TAP Air Portugal';
+
+
+// Convert string to lowercase and uppercase
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+
+// Fix capitalization in a name
+// Example:
+// "jOnAS" -> "Jonas"
+
+const passenger = 'jOnAS';
+
+const passengerLower = passenger.toLowerCase();
+
+// Capitalize first letter and append remaining characters.
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+
+console.log(passengerCorrect);
+
+
+// Comparing emails
+
+const email = 'hello@jonas.io';
+const loginEmail = '  Hello@Jonas.Io \n';
+
+// Normalize user input before comparison.
+//
+// toLowerCase() -> handles case differences
+// trim()        -> removes leading/trailing whitespace
+const normalizedEmail = loginEmail.toLowerCase().trim();
+
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+
+
+// Replacing characters and strings
+
+const priceGB = '288,97£';
+
+// Convert European price format to US format.
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23!';
+
+// replace() only replaces the first match.
+console.log(announcement.replace('door', 'gate'));
+
+// replaceAll() replaces every occurrence.
+console.log(announcement.replaceAll('door', 'gate'));
+
+
+// Alternative solution using a regular expression.
+//
+// /door/g
+// g = global flag (replace all matches)
+
+console.log(announcement.replace(/door/g, 'gate'));
+
+
+// String Boolean Methods
+
+const plane = 'Airbus A320neo';
+
+// includes() -> checks if a string exists
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+
+// startsWith() -> checks beginning of string
+console.log(plane.startsWith('Airb'));
+
+
+// endsWith() -> checks end of string
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the new Airbus family');
+}
+
+
+// Practice Exercise
+//
+// Check whether a passenger is carrying
+// prohibited items in their baggage.
+
+const checkBaggage = function (items) {
+
+  // Convert input to lowercase to make
+  // the search case-insensitive.
+  const baggage = items.toLowerCase();
+
+  // includes() returns true if the word exists.
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are NOT allowed on board');
+  } else {
+    console.log('Welcome aboard!');
+  }
+};
+
+checkBaggage('I have a laptop, some Food and a pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
+
 
 /*
 ///////////////////////////////////////
