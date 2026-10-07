@@ -100,6 +100,108 @@ const restaurant = {
 };
 
 
+/*
+///////////////////////////////////////
+// Working With Strings - Part 1
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+
+// Strings can be accessed using indexes (similar to arrays)
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+
+console.log('B737'[0]);
+
+
+// length returns the total number of characters
+
+console.log(airline.length);
+console.log('B737'.length);
+
+
+// indexOf() -> returns the index of the first occurrence
+// lastIndexOf() -> returns the index of the last occurrence
+
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+
+// Case-sensitive search.
+// Returns -1 if the value is not found.
+console.log(airline.indexOf('portugal'));
+
+
+// slice(start, end)
+// Extracts a portion of the string.
+
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+
+
+// Extract first word
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+
+
+// Extract last word
+
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+
+// Negative indexes start counting from the end
+
+console.log(airline.slice(-2));
+
+// Remove first and last character
+console.log(airline.slice(1, -1));
+
+
+// Important: String Methods on Primitive Strings
+//
+// Strings are primitive values, but methods like
+// slice(), indexOf(), replace(), and toUpperCase()
+// still work.
+//
+// Behind the scenes, JavaScript temporarily wraps
+// the primitive string inside a String object.
+// This process is called "autoboxing".
+//
+// After the method finishes, the value is converted
+// back into a primitive string.
+
+const checkMiddleSeat = function (seat) {
+  // Get the last character of the seat number.
+  const s = seat.slice(-1);
+
+  // Seats B and E are middle seats.
+  if (s === 'B' || s === 'E') {
+    console.log('You got the middle seat 😬');
+  } else {
+    console.log('You got lucky 😎');
+  }
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+
+// Explicitly create a String object
+
+console.log(new String('jonas'));
+
+// Returns "object" because this is a String object.
+console.log(typeof new String('jonas'));
+
+// String methods return primitive strings,
+// not String objects.
+
+console.log(typeof new String('jonas').slice(1));
+
+
 ///////////////////////////////////////
 // Coding Challenge #3
 
