@@ -207,7 +207,6 @@ checkIn(flight, jonas);
 //   the original object.
 */
 
-
 /*
 ///////////////////////////////////////
 // Functions Accepting Callback Functions
@@ -305,3 +304,65 @@ document.body.addEventListener('click', high5);
 // 2. Returns a function,
 // 3. Or both.
 */
+
+///////////////////////////////////////
+// Functions Returning Functions
+
+// Higher-Order Function
+//
+// Returns another function instead of a value.
+
+const greet = function (greeting) {
+  // Returned function has access to the greeting variable
+  // even after greet() has finished execution.
+  // This happens because of closures.
+
+  // Closure:
+  //
+  // The returned function remembers variables
+  // from the scope where it was created.
+
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+// Call greet() and store the returned function.
+
+const greeterHey = greet('Hey');
+
+// Execute the returned function.
+
+greeterHey('Rishi');
+greeterHey('Yadav');
+
+// Equivalent to:
+//
+// greet('Hello') returns a function.
+// Then that returned function is immediately executed.
+
+greet('Hello')('Rishi');
+
+// Arrow Function Version
+//
+// Same functionality written using
+// concise arrow function syntax.
+
+const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+
+greetArr('Hi')('Rishi');
+
+// Summary
+// Functions Returning Functions
+//
+// A function can return another function.
+//
+// Uses:
+// - Closures
+// - Currying
+// - Partial Application
+// - Middleware
+// - Event Handlers
+//
+// The returned function remembers variables
+// from its creation scope (closure).
