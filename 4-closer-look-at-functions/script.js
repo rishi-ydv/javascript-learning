@@ -4,6 +4,15 @@
 ///////////////////////////////////////
 // Default Parameters
 
+// Used when an argument is omitted.
+//
+// Rules:
+// - Applied only for undefined.
+// - Evaluated left to right.
+// - Can use previous parameters.
+// - Replaced the old ES5 pattern:
+//   param = param || defaultValue;
+
 const bookings = [];
 
 const createBooking = function (
@@ -73,4 +82,128 @@ createBooking('LH123', 5);
 // price = 1000
 
 createBooking('LH123', undefined, 1000);
+*/
+
+
+/*
+///////////////////////////////////////
+// How Passing Arguments Works:
+// Primitives (Value) vs Objects (Reference)
+
+
+//NOTE: most important note comes from C and C++ learner first time in javascript
+// JavaScript does NOT pass objects by reference.
+//
+// JavaScript passes everything by value.
+//
+// For objects, the value being copied is
+// the object's reference (memory address).
+
+
+// Objects are passed by reference
+// Technically that's not true.
+// A copy of the reference is passed.
+
+// Primitive Types:
+// string
+// number
+// boolean
+// undefined
+// null
+// bigint
+// symbol
+//
+// Copied by value.
+
+// Objects live in the heap.
+//
+// Variables store a reference (address)
+// to the object in memory.
+
+const flight = 'LH234';
+
+const rishi = {
+  name: 'Rishi Yadav',
+  passport: 24739479284,
+};
+
+
+// Function receives copies of the arguments.
+//
+// Primitive values are copied.
+// Object references are copied.
+
+const checkIn = function (flightNum, passenger) {
+
+  
+  // Changing a primitive parameter does NOT affect
+  // the original variable outside the function.
+
+  flightNum = 'LH999';
+
+  
+  // passenger contains a copy of the object's reference.
+  // Both passenger and rishi point to the same object.
+  //
+  // Therefore modifying object properties affects
+  // the original object.
+
+  passenger.name = 'Mr. ' + passenger.name;
+
+  
+  // Check passport number
+
+  if (passenger.passport === 24739479284) {
+    alert('Checked in');
+  } else {
+    alert('Wrong passport!');
+  }
+};
+
+// checkIn(flight, rishi);
+
+// console.log(flight);
+// console.log(rishi);
+
+
+// Function parameters receive copies.
+//
+// Equivalent to:
+
+// const flightNum = flight;    // primitive copy
+// const passenger = rishi;     // copied reference
+
+
+// Mutates (changes) the original object.
+
+const newPassport = function (person) {
+
+  // Generate a random passport number.
+  person.passport = Math.trunc(
+    Math.random() * 100000000000
+  );
+};
+
+
+// Change passport before check-in
+
+newPassport(jonas);
+
+
+// Passport validation now fails because
+// the original passport number was changed.
+
+checkIn(flight, jonas);
+
+// Summary 
+// Passing Arguments in JavaScript
+//
+// Primitive values:
+// - A copy of the value is passed.
+// - Changes do NOT affect the original.
+//
+// Objects:
+// - A copy of the reference is passed.
+// - Changes to object properties affect
+//   the original object.
 */
