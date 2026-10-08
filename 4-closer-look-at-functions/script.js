@@ -84,7 +84,6 @@ createBooking('LH123', 5);
 createBooking('LH123', undefined, 1000);
 */
 
-
 /*
 ///////////////////////////////////////
 // How Passing Arguments Works:
@@ -206,4 +205,103 @@ checkIn(flight, jonas);
 // - A copy of the reference is passed.
 // - Changes to object properties affect
 //   the original object.
+*/
+
+
+/*
+///////////////////////////////////////
+// Functions Accepting Callback Functions
+
+// Callback Function:
+//
+// A function passed as an argument
+// to another function so it can be
+// executed later.
+
+// Callback Function #1
+//
+// Removes all spaces and converts
+// the string to lowercase.
+
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+
+// Callback Function #2
+//
+// Converts only the first word to uppercase.
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+
+  return [first.toUpperCase(), ...others].join(' ');
+};
+
+// Higher-Order Function
+//
+// A higher-order function is a function
+// that receives another function as an argument,
+// returns a function, or both.
+
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+
+  // Execute the callback function.
+
+  console.log(`Transformed string: ${fn(str)}`);
+
+  // name returns the function name.
+
+  console.log(`Transformed by: ${fn.name}`);
+};
+
+// Passing callback functions.
+//
+// Notice:
+// We pass the function itself,
+// NOT the result of calling the function.
+
+transformer('JavaScript is the best!', upperFirstWord);
+
+transformer('JavaScript is the best!', oneWord);
+
+// JavaScript uses callbacks everywhere.
+
+const high5 = function () {
+  console.log('👋');
+};
+
+// Event listener callback.
+//
+// high5 executes whenever
+// the click event occurs.
+
+document.body.addEventListener('click', high5);
+
+// forEach callback.
+//
+// high5 executes once for each element.
+
+['Rishi', 'Martha', 'Adam'].forEach(high5);
+
+// Summary
+
+// Callback Function
+//
+// A function passed into another function
+// to be executed later.
+//
+// Examples:
+// - forEach()
+// - map()
+// - filter()
+// - reduce()
+// - addEventListener()
+//
+// Higher-Order Function
+//
+// A function that:
+// 1. Accepts another function,
+// 2. Returns a function,
+// 3. Or both.
 */
