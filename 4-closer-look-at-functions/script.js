@@ -371,7 +371,7 @@ greetArr('Hi')('Rishi');
 */
 
 
-
+/*
 ///////////////////////////////////////
 // The call() and apply() Methods
 
@@ -473,3 +473,193 @@ console.log(swiss);
 // with the spread operator.
 
 book.call(swiss, ...flightData);
+
+
+///////////////////////////////////////
+// The bind() Method
+
+// Quick Summary
+//
+// call()
+// - Invokes the function immediately.
+// - Allows us to manually set `this`.
+//
+// apply()
+// - Similar to call().
+// - Accepts arguments as an array.
+// - Rarely used in modern JavaScript.
+//
+// bind()
+// - Does NOT invoke the function immediately.
+// - Returns a NEW function.
+// - Permanently sets the value of `this`.
+// - Can also preset (partially apply) arguments.
+
+
+// Example:
+//
+// book.call(eurowings, 23, 'Sarah Williams');
+//
+// Here, call() executes immediately.
+//
+// bind() returns a new function instead.
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+
+// Equivalent to:
+//
+// const bookEW = function(flightNum, name) {
+//   book.call(eurowings, flightNum, name);
+// };
+
+bookEW(23, 'Steven Williams');
+
+
+// Partial Application with bind()
+//
+// The flight number (23) is permanently preset.
+//
+// Only the name argument is required later.
+
+const bookEW23 = book.bind(eurowings, 23);
+
+
+// Equivalent to:
+//
+// const bookEW23 = function(name) {
+//   book.call(eurowings, 23, name);
+// };
+
+bookEW23('Jonas Schmedtmann');
+bookEW23('Martha Cooper');
+
+
+// bind() with Event Listeners
+
+lufthansa.planes = 300;
+
+lufthansa.buyPlane = function () {
+  console.log(this);
+
+  
+  // Increase plane count
+
+  this.planes++;
+
+  console.log(this.planes);
+};
+
+// lufthansa.buyPlane();
+
+
+// Problem:
+//
+// When buyPlane is used as an event handler,
+// the button element becomes `this`.
+//
+// Therefore:
+//
+// this = button element
+//
+// NOT
+//
+// this = lufthansa
+//
+// bind() fixes this by permanently setting
+// `this` to lufthansa.
+
+document
+  .querySelector('.buy')
+  .addEventListener(
+    'click',
+    lufthansa.buyPlane.bind(lufthansa)
+  );
+
+
+// Partial Application
+
+// Generic tax calculator.
+//
+// rate  -> tax percentage
+// value -> product price
+
+const addTax = (rate, value) =>
+  value + value * rate;
+
+console.log(addTax(0.1, 200));
+
+
+// Create a specialized VAT function.
+//
+// null is passed because addTax()
+// does not use `this`.
+//
+// First argument (rate) is preset to 23%.
+
+const addVAT = addTax.bind(null, 0.23);
+
+
+// Equivalent to:
+//
+// const addVAT = value =>
+//   value + value * 0.23;
+
+console.log(addVAT(100));
+console.log(addVAT(23));
+
+// Partial Application Using
+// Functions Returning Functions
+//
+// This achieves the same result as bind()
+// but uses closures instead.
+
+const addTaxRate = function (rate) {
+
+  
+  // Returned function remembers rate
+  // through closure.
+
+  return function (value) {
+    return value + value * rate;
+  };
+};
+
+
+// rate = 0.23 is remembered by closure
+
+const addVAT2 = addTaxRate(0.23);
+
+console.log(addVAT2(100));
+console.log(addVAT2(23));
+
+
+// Important Notes
+//
+// bind()
+// - Returns a new function.
+// - Does NOT execute immediately.
+// - Permanently sets `this`.
+// - Can preset arguments.
+//
+// call()
+// - Executes immediately.
+// - Manually sets `this`.
+//
+// apply()
+// - Executes immediately.
+// - Arguments passed as an array.
+//
+// Partial Application
+// - Pre-filling some function arguments.
+// - Can be achieved using:
+//   1. bind()
+//   2. Closures (functions returning functions)
+//
+// Event Listeners
+// - `this` usually points to the DOM element.
+// - bind() is commonly used to preserve
+//   the desired object context.
+*/
