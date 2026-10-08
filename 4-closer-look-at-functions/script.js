@@ -305,6 +305,8 @@ document.body.addEventListener('click', high5);
 // 3. Or both.
 */
 
+
+/*
 ///////////////////////////////////////
 // Functions Returning Functions
 
@@ -366,3 +368,108 @@ greetArr('Hi')('Rishi');
 //
 // The returned function remembers variables
 // from its creation scope (closure).
+*/
+
+
+
+///////////////////////////////////////
+// The call() and apply() Methods
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+
+  // Method shorthand (ES6)
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+
+    this.bookings.push({
+      flight: `${this.iataCode}${flightNum}`,
+      name,
+    });
+  },
+};
+
+
+// Regular method calls
+
+lufthansa.book(239, 'Rishi Yadav');
+lufthansa.book(635, 'John Smith');
+
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+
+// Store the method in a separate variable.
+
+const book = lufthansa.book;
+
+
+// Does NOT work.
+//
+// book() is now a regular function call.
+// In strict mode, `this` becomes undefined.
+//
+// book(23, 'Sarah Williams');
+
+
+// call()
+//
+// call() allows us to manually set the
+// value of `this` when invoking a function.
+//
+// Syntax:
+// fn.call(thisArg, arg1, arg2, ...)
+
+book.call(eurowings, 23, 'Sarah Williams');
+
+console.log(eurowings);
+
+
+// Here `this` points to lufthansa.
+
+book.call(lufthansa, 239, 'Mary Cooper');
+
+console.log(lufthansa);
+
+
+// Another airline object
+
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+
+// Reuse the same booking function for Swiss.
+
+book.call(swiss, 583, 'Mary Cooper');
+
+
+// apply()
+//
+// Similar to call(), but arguments are
+// passed as an array.
+//
+// Syntax:
+// fn.apply(thisArg, [arg1, arg2])
+
+const flightData = [583, 'George Cooper'];
+
+book.apply(swiss, flightData);
+
+console.log(swiss);
+
+
+// Modern JavaScript prefers call()
+// with the spread operator.
+
+book.call(swiss, ...flightData);
