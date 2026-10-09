@@ -745,3 +745,100 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
 // [1, 5, 3, 9, 6, 1
 */
 
+///////////////////////////////////////
+// Immediately Invoked Function Expressions (IIFE)
+//
+// An IIFE is a function that is defined and executed
+// immediately, without needing to be called separately.
+//
+// Why use an IIFE?
+// - Create a private scope for variables.
+// - Prevent variables from leaking into the outer scope.
+// - Historically used to create scope before ES6 introduced
+//   block-scoped variables (`let` and `const`).
+
+
+// 1. Regular Function
+
+// The function is defined here but does not execute
+// until we explicitly call it using runOnce().
+
+const runOnce = function () {
+  console.log('This will never run again');
+};
+
+runOnce();
+
+
+// 2. IIFE Using a Regular Function
+
+// The parentheses around the function expression allow
+// JavaScript to treat it as an expression.
+//
+// The final () immediately invokes the function.
+//
+// The function creates its own scope, so `isPrivate`
+// cannot be accessed from outside the function.
+
+(function () {
+  console.log('This will never run again');
+
+  const isPrivate = 23;
+})();
+
+// ReferenceError: isPrivate is not defined
+// because `isPrivate` exists only inside the IIFE.
+
+// console.log(isPrivate);
+
+
+// 3. IIFE Using an Arrow Function
+
+// Arrow functions can also be used to create IIFEs.
+// The final () immediately executes the arrow function.
+
+(() => console.log('This will ALSO never run again'))();
+
+
+// 4. Block Scope: let/const vs. var
+
+// ES6 introduced block-scoped variables using let and const.
+// A regular block can now provide its own scope without
+// needing an IIFE.
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+
+// ReferenceError: isPrivate is not defined
+// because const is block-scoped.
+
+// console.log(isPrivate);
+
+// `var` is function-scoped (or global-scoped when declared
+// at the top level of a classic browser script), not block-scoped.
+// Therefore, it remains accessible outside this block
+// in this example.
+console.log(notPrivate);
+
+
+// Quick Revision Summary
+//
+// IIFE:
+// - Defined and executed immediately.
+// - Creates a separate function scope.
+// - Can keep local variables private.
+//
+// Regular function:
+// - Must be called separately to execute.
+//
+// Block scope:
+// - let and const are limited to the block.
+// - var ignores ordinary block scope.
+//
+// Modern JavaScript:
+// - Use { } with let/const for most block-scoping needs.
+// - IIFEs are still useful in certain situations, but are
+//   less necessary for basic variable isolation since ES6.
+
