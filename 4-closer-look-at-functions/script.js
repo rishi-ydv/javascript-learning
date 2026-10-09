@@ -926,5 +926,41 @@ f(); // 1554
 
 // Inspect the newly assigned function and its closure.
 console.dir(f);
+
+
+// Example 2: Closures with asynchronous code
+
+const boardPassengers = function (n, wait) {
+  // Calculate the number of passengers in each group.
+  // There are 3 groups in total.
+  const perGroup = n / 3;
+
+  // setTimeout() schedules this callback to execute after the specified delay.
+  // The callback forms a closure over n and perGroup.
+  // It can access these variables even after boardPassengers() finishes.
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  // This statement executes immediately; it does not wait for the timeout.
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+// This is a global-scope variable in this script's scope.
+// It does not affect the local perGroup variable inside boardPassengers().
+const perGroup = 1000;
+
+// Call the function with 180 passengers and a 3-second delay.
+boardPassengers(180, 3);
+
+// Expected output order:
+//
+// Immediately:
+// Will start boarding in 3 seconds
+//
+// After approximately 3 seconds:
+// We are now boarding all 180 passengers
+// There are 3 groups, each with 60 passengers
 */
 
