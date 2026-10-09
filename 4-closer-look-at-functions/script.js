@@ -874,3 +874,57 @@ booker(); // 3 passengers
 // Inspect the function and its internal details in browser DevTools.
 console.dir(booker);
 */
+
+/*
+///////////////////////////////////////
+// More Closure Examples
+
+// Example 1: A closure remembers its original lexical environment.
+
+// Declare f without assigning a function to it yet.
+let f;
+
+// Function g creates a local variable and assigns a function to f.
+const g = function () {
+  const a = 23;
+
+  // This function closes over the variable a.
+  // Even after g() finishes, f can still access a.
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+// Function h creates a different local variable and assigns
+// another function to f.
+const h = function () {
+  const b = 777;
+
+  // This function closes over the variable b.
+  // Assigning this function to f replaces the previous function.
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+// Call g() to assign the first inner function to f.
+g();
+
+// Execute the function assigned by g().
+// The closure remembers a = 23, so the output is 46.
+f(); // 46
+
+// Inspect the current function and its closure in browser DevTools.
+console.dir(f);
+
+// Reassign f by calling h().
+h();
+
+// Execute the new function assigned by h().
+// This closure remembers b = 777, so the output is 1554.
+f(); // 1554
+
+// Inspect the newly assigned function and its closure.
+console.dir(f);
+*/
+
