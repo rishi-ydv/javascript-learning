@@ -745,6 +745,8 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
 // [1, 5, 3, 9, 6, 1
 */
 
+
+/*
 ///////////////////////////////////////
 // Immediately Invoked Function Expressions (IIFE)
 //
@@ -841,4 +843,34 @@ console.log(notPrivate);
 // - Use { } with let/const for most block-scoping needs.
 // - IIFEs are still useful in certain situations, but are
 //   less necessary for basic variable isolation since ES6.
+*/
 
+
+/*
+///////////////////////////////////////
+// Closures
+
+// The outer function creates a variable and returns an inner function.
+const secureBooking = function () {
+  // This variable belongs to the scope of secureBooking.
+  let passengerCount = 0;
+
+  // The inner function increments passengerCount and displays its value.
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+// secureBooking() executes once and returns the inner function.
+// booker stores that returned function.
+const booker = secureBooking();
+
+// Call the returned function three times.
+booker(); // 1 passengers
+booker(); // 2 passengers
+booker(); // 3 passengers
+
+// Inspect the function and its internal details in browser DevTools.
+console.dir(booker);
+*/
