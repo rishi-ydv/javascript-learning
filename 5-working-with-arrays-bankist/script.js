@@ -227,3 +227,61 @@ console.log('jonas'.at(-1)); // 's'
 // at() does NOT modify the original array or string.
 */
 
+/*
+///////////////////////////////////////
+// Looping Arrays: forEach()
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// ===============================================
+// 1. Using a for...of loop
+
+// movements.entries() returns an iterator containing [index, element] pairs.
+// Array destructuring extracts the index (i) and current movement.
+for (const [i, movement] of movements.entries()) {
+  if (movement > 0) {
+    // Positive values represent deposits.
+    console.log(`Movement ${i + 1}: You deposited ${movement}`);
+  } else {
+    // Negative values represent withdrawals.
+    // Math.abs() converts the negative amount to a positive number.
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+  }
+}
+
+console.log('---- FOREACH ----');
+
+// ===============================================
+// 2. Using the forEach() method
+
+// forEach() calls the callback once for each array element.
+// Callback parameters are provided in this order:
+// 1. Current element (mov)
+// 2. Current index (i)
+// 3. Original array (arr)
+movements.forEach(function (mov, i, arr) {
+  if (mov > 0) {
+    console.log(`Movement ${i + 1}: You deposited ${mov}`);
+  } else {
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`);
+  }
+});
+
+// ===============================================
+// QUICK REVISION
+//
+// for...of:
+// - Iterates over array values.
+// - Can use break and continue.
+// - Use entries() when you need both the index and value.
+//
+// forEach():
+// - Executes a callback for each array element.
+// - Callback arguments: element, index, original array.
+// - Does not support break or continue to stop iteration.
+// - Its return value is always undefined.
+//
+// Note: In this example, arr is available as a callback argument,
+// but it is not needed for the deposit/withdrawal logic.
+*/
+
