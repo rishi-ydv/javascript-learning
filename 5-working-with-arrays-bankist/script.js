@@ -65,11 +65,6 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -283,5 +278,80 @@ movements.forEach(function (mov, i, arr) {
 //
 // Note: In this example, arr is available as a callback argument,
 // but it is not needed for the deposit/withdrawal logic.
+*/
+
+
+/*
+///////////////////////////////////////
+// forEach() With Maps and Sets
+
+// ===============================================
+// 1. forEach() With Maps
+
+// A Map stores key-value pairs.
+// Each entry contains a currency code and its full name.
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+// Map.forEach() callback arguments are provided in this order:
+// 1. value -> The value associated with the current key.
+// 2. key   -> The current key.
+// 3. map   -> The original Map.
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+// Output:
+// USD: United States dollar
+// EUR: Euro
+// GBP: Pound sterling
+
+// ===============================================
+// 2. forEach() With Sets
+
+// A Set stores unique values.
+// Duplicate values are automatically removed.
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+
+console.log(currenciesUnique);
+// Set(3) { 'USD', 'GBP', 'EUR' }
+
+// Set.forEach() callback arguments are provided in this order:
+// 1. value       -> The current Set value.
+// 2. valueAgain  -> The same value again.
+// 3. set         -> The original Set.
+//
+// Unlike Map, a Set has no separate key for each value.
+// The first two callback arguments are therefore identical.
+// The underscore (_) is a variable name used by convention to
+// indicate that this parameter is intentionally unused.
+currenciesUnique.forEach(function (value, _, set) {
+  console.log(`${value}: ${value}`);
+});
+
+// Output:
+// USD: USD
+// GBP: GBP
+// EUR: EUR
+
+// ===============================================
+// QUICK REVISION
+//
+// Map.forEach((value, key, map) => { ... })
+// - First argument: value
+// - Second argument: key
+// - Third argument: original Map
+//
+// Set.forEach((value, valueAgain, set) => { ... })
+// - First argument: value
+// - Second argument: the same value again
+// - Third argument: original Set
+//
+// Why does Set pass the value twice?
+// It keeps the callback signature consistent with Map.forEach(),
+// even though Set elements do not have separate keys.
 */
 
