@@ -178,3 +178,52 @@ console.log(letters.join(' - '));
 // Both arr.slice() and [...arr] create shallow copies, not deep copies. If an array contains objects, the copied array still references those same objects.
 */
 
+/*
+///////////////////////////////////////
+// The New at() Method
+
+const arr = [23, 11, 64];
+
+// ===============================================
+// 1. Accessing array elements using bracket notation
+// Indexes start at 0.
+console.log(arr[0]); // 23
+
+// The at() method provides another way to access an element by index.
+console.log(arr.at(0)); // 23
+
+// ===============================================
+// 2. Getting the last array element
+
+// Traditional approach: use the array length minus 1.
+console.log(arr[arr.length - 1]); // 64
+
+// Using slice(): creates a new array containing the last element.
+// [0] retrieves that element from the new array.
+console.log(arr.slice(-1)[0]); // 64
+
+// Using at(): a negative index counts backward from the end.
+// -1 refers to the last element.
+console.log(arr.at(-1)); // 64
+
+// ===============================================
+// 3. Using at() with strings
+
+// Strings also support at() for accessing characters by index.
+console.log('jonas'.at(0)); // 'j'
+
+// A negative index counts backward from the end of the string.
+console.log('jonas'.at(-1)); // 's'
+
+// ===============================================
+// QUICK REVISION
+//
+// arr.at(0)  -> Returns the first element.
+// arr.at(-1) -> Returns the last element.
+// arr.at(-2) -> Returns the second-last element.
+//
+// at() works with both arrays and strings.
+// Unlike slice(), at() returns a single element or character.
+// at() does NOT modify the original array or string.
+*/
+
