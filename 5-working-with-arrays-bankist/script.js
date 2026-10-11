@@ -375,3 +375,78 @@ currenciesUnique.forEach(function (value, _, set) {
 // It keeps the callback signature consistent with Map.forEach(),
 // even though Set elements do not have separate keys.
 */
+
+
+///////////////////////////////////////
+// Coding Challenge #1: Checking Dogs
+
+/*
+Julia and Kate collected the ages of five dogs each.
+
+Rules:
+- Dogs aged 3 years or older are adults.
+- Dogs younger than 3 years are puppies.
+
+Tasks:
+1. Correct Julia's data by removing the first dog and last two dogs.
+2. Combine Julia's corrected data with Kate's data.
+3. Log whether each dog is an adult or a puppy.
+4. Test the function with both datasets.
+*/
+
+/*
+const checkDogs = function (dogsJulia, dogsKate) {
+  // 1. Create a shallow copy so the original array is not modified.
+  const dogsJuliaCorrected = dogsJulia.slice();
+
+  // Remove Julia's first dog and last two dogs.
+  // After removing the first element, the original last two dogs
+  // are still at the end, so splice(-2) removes those two elements.
+  dogsJuliaCorrected.splice(0, 1);
+  dogsJuliaCorrected.splice(-2);
+
+  // Alternative: slice(1, -2) would create the corrected array directly.
+  // const dogsJuliaCorrected = dogsJulia.slice(1, -2);
+
+  // 2. Combine Julia's corrected data with Kate's data.
+  // concat() creates a new array without modifying either input array.
+  const dogs = dogsJuliaCorrected.concat(dogsKate);
+
+  console.log('Corrected and combined dog ages:', dogs);
+
+  // 3. Check each dog's age and display whether it is an adult or puppy.
+  dogs.forEach(function (dog, i) {
+    if (dog >= 3) {
+      console.log(
+        `Dog number ${i + 1} is an adult, and is ${dog} years old`
+      );
+    } else {
+      console.log(`Dog number ${i + 1} is still a puppy 🐶`);
+    }
+  });
+};
+
+// 4. Test dataset 1.
+console.log('--- TEST DATA 1 ---');
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+
+// Test dataset 2.
+console.log('--- TEST DATA 2 ---');
+checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+
+// ===============================================
+// QUICK REVISION
+//
+// slice()   -> Creates a shallow copy or extracts a portion of an array.
+// splice()  -> Removes or replaces elements in the original array.
+// concat()  -> Combines arrays into a new array.
+// forEach() -> Executes a callback for every array element.
+//
+// Important:
+// - Avoid mutating function parameters when you don't need to.
+// - Julia's first and last two entries must be removed.
+// - A dog aged exactly 3 years is an adult.
+// - Array indexes start at 0, so i + 1 gives a human-readable dog number.
+*/
+
+
