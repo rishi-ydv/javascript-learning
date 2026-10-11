@@ -449,4 +449,75 @@ checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 // - Array indexes start at 0, so i + 1 gives a human-readable dog number.
 */
 
+/*
+///////////////////////////////////////
+// The map() Method
+
+// Exchange rate: 1 EUR = 1.1 USD.
+const eurToUsd = 1.1;
+
+// ===============================================
+// 1. Converting EUR movements to USD using map()
+
+// map() calls the callback for each element and builds a new array
+// from the values returned by the callback.
+// It does NOT modify the original movements array.
+
+// Traditional function syntax:
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * eurToUsd;
+// });
+
+// Arrow function syntax: shorter and cleaner for this calculation.
+const movementsUSD = movements.map(mov => mov * eurToUsd);
+
+console.log(movements); // Original EUR movements remain unchanged.
+console.log(movementsUSD); // New array containing USD movements.
+
+// ===============================================
+// 2. Converting EUR movements to USD using a for...of loop
+
+// Create an empty array to store the converted movements.
+const movementsUSDfor = [];
+
+// Multiply each movement by the exchange rate and add the result
+// to the new array using push().
+for (const mov of movements) {
+  movementsUSDfor.push(mov * eurToUsd);
+}
+
+console.log(movementsUSDfor);
+
+// ===============================================
+// 3. Creating movement descriptions using map()
+
+// map() can also transform numbers into strings.
+// The callback receives the current element and its index.
+const movementsDescriptions = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${
+      mov > 0 ? 'deposited' : 'withdrew'
+    } ${Math.abs(mov)}`
+);
+
+// Display the new array of descriptive strings.
+console.log(movementsDescriptions);
+
+// ===============================================
+// QUICK REVISION
+//
+// map() -> Transforms each element and returns a new array.
+// Callback arguments include:
+// 1. Current element
+// 2. Current index
+// 3. Original array (if needed)
+//
+// Important:
+// - Always return the value you want in the resulting array.
+// - map() does not mutate the original array in this example.
+// - Use map() when you need a transformed array.
+// - Use forEach() when you want to perform an action for each element
+//   without building a new array from callback return values.
+*/
+
 
