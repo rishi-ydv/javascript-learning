@@ -61,10 +61,32 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+//////////////////////////////////////////////////////
+// Functions
+
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    const html = `
+      <div class="movements__row">
+        <div class="movements__type movements__type--${type}">${
+          i + 1
+        } ${type}</div>
+        <div class="movements__value">${mov}€</div>
+      </div>
+    `;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -280,7 +302,6 @@ movements.forEach(function (mov, i, arr) {
 // but it is not needed for the deposit/withdrawal logic.
 */
 
-
 /*
 ///////////////////////////////////////
 // forEach() With Maps and Sets
@@ -354,4 +375,3 @@ currenciesUnique.forEach(function (value, _, set) {
 // It keeps the callback signature consistent with Map.forEach(),
 // even though Set elements do not have separate keys.
 */
-
