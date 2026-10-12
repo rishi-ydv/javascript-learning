@@ -528,3 +528,58 @@ console.log(movementsDescriptions);
 // - Use forEach() when you want to perform an action for each element
 //   without building a new array from callback return values.
 */
+
+
+/*
+///////////////////////////////////////
+// The filter() Method
+
+// ===============================================
+// 1. Filtering deposits using filter()
+
+// filter() checks each element against a condition.
+// It returns a new array containing only the elements
+// for which the callback returns true.
+const deposits = movements.filter(function (mov, i, arr) {
+  return mov > 0; // Keep only positive movements (deposits).
+});
+
+console.log(movements); // Original array remains unchanged.
+console.log(deposits);  // New array containing only deposits.
+
+// ===============================================
+// 2. Filtering deposits using a for...of loop
+
+// Create an empty array to store the matching movements.
+const depositsFor = [];
+
+// Add only positive movements to the new array.
+for (const mov of movements) {
+  if (mov > 0) depositsFor.push(mov);
+}
+
+console.log(depositsFor); // Same result as deposits.
+
+// ===============================================
+// 3. Filtering withdrawals using an arrow function
+
+// Keep only negative movements (withdrawals).
+// The arrow function provides a concise way to write the condition.
+const withdrawals = movements.filter(mov => mov < 0);
+
+console.log(withdrawals);
+
+// ===============================================
+// QUICK REVISION
+//
+// filter() -> Returns a new array containing elements that pass a test.
+// - Callback arguments: current element, index, original array.
+// - Returns a new array; does not modify the original array here.
+// - If no elements pass the condition, returns an empty array.
+// - Unlike map(), filter() keeps or discards elements rather than
+//   transforming each element into a new value.
+//
+// Positive movement (> 0) -> Deposit
+// Negative movement (< 0) -> Withdrawal
+// Zero movement (=== 0)   -> Neither deposit nor withdrawal here.
+*/
