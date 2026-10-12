@@ -583,3 +583,82 @@ console.log(withdrawals);
 // Negative movement (< 0) -> Withdrawal
 // Zero movement (=== 0)   -> Neither deposit nor withdrawal here.
 */
+
+
+/*
+///////////////////////////////////////
+// The reduce() Method
+
+console.log(movements);
+
+// ===============================================
+// 1. Calculating the total balance using reduce()
+
+// The accumulator (acc) stores the running result — like a snowball
+// that grows as each movement is added.
+// The current value (cur) is the movement being processed.
+//
+// Callback arguments:
+// 1. acc -> Accumulated result from previous iterations.
+// 2. cur -> Current array element.
+// 3. i   -> Current index (if needed).
+// 4. arr -> Original array (if needed).
+
+// Traditional function syntax, with logging to see each iteration:
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+
+// Arrow function syntax: add each movement to the accumulator.
+// The initial accumulator value is 0.
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+
+console.log(balance); // Total balance after all movements.
+
+// ===============================================
+// 2. Calculating the total balance using a for...of loop
+
+// Start with a balance of 0 and add each movement.
+let balance2 = 0;
+
+for (const mov of movements) {
+  balance2 += mov;
+}
+
+console.log(balance2); // Same result as balance.
+
+// ===============================================
+// 3. Finding the maximum value using reduce()
+
+// Initialize the accumulator with the first array element.
+// For each movement, keep whichever value is larger:
+// - If acc is greater, keep acc.
+// - Otherwise, use mov as the new accumulator.
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movements[0]);
+
+console.log(max); // Largest movement in the array.
+
+// ===============================================
+// QUICK REVISION
+//
+// reduce() -> Combines array elements into a single accumulated result.
+// Common uses:
+// - Sum or total balance.
+// - Maximum or minimum value.
+// - Grouping or building other data structures.
+//
+// Syntax:
+// array.reduce((accumulator, currentValue) => {
+//   return updatedAccumulator;
+// }, initialValue);
+//
+// Important:
+// - The returned value becomes the accumulator for the next iteration.
+// - The initial value here is 0 for calculating the total.
+// - For finding the maximum, movements[0] is the initial accumulator.
+// - reduce() returns one final result, not a new array.
+*/
