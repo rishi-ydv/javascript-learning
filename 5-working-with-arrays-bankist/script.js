@@ -83,6 +83,11 @@ const displayMovements = function (movements) {
   });
 };
 
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance}€`;
+};
+
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -529,7 +534,6 @@ console.log(movementsDescriptions);
 //   without building a new array from callback return values.
 */
 
-
 /*
 ///////////////////////////////////////
 // The filter() Method
@@ -583,7 +587,6 @@ console.log(withdrawals);
 // Negative movement (< 0) -> Withdrawal
 // Zero movement (=== 0)   -> Neither deposit nor withdrawal here.
 */
-
 
 /*
 ///////////////////////////////////////
