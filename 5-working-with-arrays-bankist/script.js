@@ -709,3 +709,55 @@ const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 console.log(avg1, avg2);
 */
+
+/*
+///////////////////////////////////////
+// The Magic of Chaining Methods
+
+// Exchange rate: 1 EUR = 1.1 USD.
+const eurToUsd = 1.1;
+
+console.log(movements);
+
+// ===============================================
+// METHOD CHAINING: Calculate total deposits in USD
+
+// Step 1: filter()
+// Keep only positive movements (deposits).
+//
+// Step 2: map()
+// Convert each deposit from EUR to USD.
+//
+// Step 3: reduce()
+// Add all converted deposits to calculate the total.
+//
+// Each method returns a result that the next method processes.
+// This creates a data-processing pipeline.
+
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+
+  // Convert each deposit from EUR to USD.
+  // The index (i) and array (arr) are available but not needed here.
+  .map(mov => mov * eurToUsd)
+
+  // Add all USD deposits together, starting with 0.
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(totalDepositsUSD);
+
+// ===============================================
+// QUICK REVISION
+//
+// filter() -> Selects elements that satisfy a condition.
+// map()    -> Transforms each selected element.
+// reduce() -> Combines the transformed elements into one result.
+//
+// Pipeline:
+// movements -> deposits -> USD deposits -> total USD deposits
+//
+// Important:
+// - The original movements array is not modified by these methods.
+// - Each method operates on the result returned by the previous method.
+// - Unused callback parameters can be removed for cleaner code.
+*/
