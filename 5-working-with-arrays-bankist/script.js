@@ -807,3 +807,47 @@ const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 console.log(avg1, avg2);
 */
+
+
+/*
+///////////////////////////////////////
+// The find() Method
+
+// ===============================================
+// 1. Finding the first withdrawal
+
+// find() checks each movement in order and returns the first
+// value that satisfies the condition (mov < 0).
+// It stops searching once the first match is found.
+const firstWithdrawal = movements.find(mov => mov < 0);
+
+console.log(movements);       // Original movements array.
+console.log(firstWithdrawal); // First negative movement.
+
+// ===============================================
+// 2. Finding a specific account
+
+// Display the accounts array to inspect the available account objects.
+console.log(accounts);
+
+// Find the first account whose owner property matches 'Jessica Davis'.
+// Since account objects are being searched, find() returns the
+// matching object, not just the owner's name.
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+
+console.log(account); // The matching account object, or undefined if not found.
+
+// ===============================================
+// QUICK REVISION
+//
+// find() -> Returns the first matching element.
+// - Stops searching when it finds a match.
+// - Returns undefined if no element matches.
+// - Does NOT modify the original array.
+//
+// find() vs. filter():
+// - find()   -> Returns one matching element.
+// - filter() -> Returns an array of all matching elements.
+//
+// Strict equality (===) is used to compare the account owner's name.
+*/
