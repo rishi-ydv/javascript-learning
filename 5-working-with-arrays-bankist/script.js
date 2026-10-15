@@ -1038,3 +1038,71 @@ console.log(movements.filter(deposit));
 // - These methods do not modify the original array.
 // - An empty array makes some() return false and every() return true.
 */
+
+
+/*
+///////////////////////////////////////
+// flat() and flatMap()
+
+// ===============================================
+// 1. flat() — flattening a nested array
+
+// flat() removes one level of nesting by default.
+// Nested arrays at the first level are combined into one array.
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+
+console.log(arr.flat());
+// [1, 2, 3, 4, 5, 6, 7, 8]
+
+// ===============================================
+// 2. flat() — flattening multiple levels
+
+// This array contains nested arrays at different depths.
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+
+// Passing 2 flattens the array by two levels.
+console.log(arrDeep.flat(2));
+// [1, 2, 3, 4, 5, 6, 7, 8]
+
+// ===============================================
+// 3. Using map(), flat(), and reduce() together
+
+// Step 1: map() creates an array containing each account's movements.
+// Step 2: flat() combines those movement arrays into one flat array.
+// Step 3: reduce() adds all movements to calculate the overall balance.
+const overallBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(overallBalance);
+
+// ===============================================
+// 4. flatMap() — combining mapping and flattening
+
+// flatMap() performs the mapping operation and flattens the result
+// by one level, so a separate flat() call is unnecessary.
+// reduce() then calculates the overall balance.
+const overallBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(overallBalance2);
+
+// Both approaches calculate the same overall balance.
+
+// ===============================================
+// QUICK REVISION
+//
+// flat() -> Flattens nested arrays by one level by default.
+// flat(depth) -> Flattens the specified number of levels.
+// flatMap() -> Maps each element and flattens the result by one level.
+//
+// Important:
+// - flat() and flatMap() return new arrays; they do not modify
+//   the original array.
+// - flatMap() only flattens one level.
+// - For deeper nesting, use flat() with an appropriate depth.
+// - flatMap() is useful when each input element produces an array
+//   and you want a single combined array.
+*/
