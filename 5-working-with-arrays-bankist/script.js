@@ -913,3 +913,60 @@ console.log(account); // The matching account object, or undefined if not found.
 //
 // Strict equality (===) is used to compare the account owner's name.
 */
+
+
+
+/*
+///////////////////////////////////////
+// The New findLast() and findLastIndex() Methods
+
+console.log(movements);
+
+// ===============================================
+// 1. Finding the last withdrawal using findLast()
+
+// findLast() searches the array from right to left
+// and returns the first matching element it encounters.
+const lastWithdrawal = movements.findLast(mov => mov < 0);
+
+console.log(lastWithdrawal); // Most recent withdrawal in array order.
+
+// ===============================================
+// 2. Finding the index of the latest large movement
+
+// findLastIndex() searches from right to left and returns
+// the index of the last element that satisfies the condition.
+// Math.abs() lets us check the size of both positive and negative
+// movements without considering their signs.
+const latestLargeMovementIndex = movements.findLastIndex(
+  mov => Math.abs(mov) > 1000
+);
+
+console.log(latestLargeMovementIndex);
+
+// Calculate how many movements ago the latest large movement occurred.
+// The last element is 1 movement ago, the element before it is 2 ago, etc.
+if (latestLargeMovementIndex !== -1) {
+  console.log(
+    `Your latest large movement was ${
+      movements.length - latestLargeMovementIndex
+    } movements ago`
+  );
+} else {
+  // findLastIndex() returns -1 if no element matches the condition.
+  console.log('No large movements found.');
+}
+
+// ===============================================
+// QUICK REVISION
+//
+// find()           -> Returns the first matching element from the left.
+// findLast()       -> Returns the first matching element from the right.
+// findIndex()      -> Returns the index of the first match.
+// findLastIndex()  -> Returns the index of the last match.
+//
+// Important:
+// - find() and findLast() return undefined when no match is found.
+// - findIndex() and findLastIndex() return -1 when no match is found.
+// - These methods do not modify the original array.
+*/
