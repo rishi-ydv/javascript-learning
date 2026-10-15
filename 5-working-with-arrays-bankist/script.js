@@ -970,3 +970,71 @@ if (latestLargeMovementIndex !== -1) {
 // - findIndex() and findLastIndex() return -1 when no match is found.
 // - These methods do not modify the original array.
 */
+
+
+/*
+///////////////////////////////////////
+// some(), every(), and includes()
+
+console.log(movements);
+
+// ===============================================
+// 1. includes() — checking for an exact value
+
+// includes() checks whether the array contains the specified value.
+// It returns true if the value is found; otherwise, it returns false.
+console.log(movements.includes(-130)); // true
+
+// ===============================================
+// 2. some() — checking whether at least one element matches
+
+// some() returns true if at least one movement satisfies the condition.
+// It stops checking once it finds a matching element.
+console.log(movements.some(mov => mov === -130)); // true
+
+// Check whether the array contains at least one deposit.
+// Positive movements represent deposits.
+const anyDeposits = movements.some(mov => mov > 0);
+
+console.log(anyDeposits); // true if at least one deposit exists.
+
+// ===============================================
+// 3. every() — checking whether all elements match
+
+// every() returns true only if all movements satisfy the condition.
+// Since this array contains negative values, the result is false.
+console.log(movements.every(mov => mov > 0)); // false
+
+// Check whether every movement in account4 is positive.
+// The result depends on the contents of account4.movements.
+console.log(account4.movements.every(mov => mov > 0));
+
+// ===============================================
+// 4. Reusing a callback function
+
+// Define the condition once so it can be reused with different methods.
+const deposit = mov => mov > 0;
+
+// Does at least one movement represent a deposit?
+console.log(movements.some(deposit)); // true if any deposit exists.
+
+// Do all movements represent deposits?
+console.log(movements.every(deposit)); // true only if all are positive.
+
+// Return a new array containing only deposits.
+console.log(movements.filter(deposit));
+
+// ===============================================
+// QUICK REVISION
+//
+// includes(value) -> Checks for an exact value.
+// some(callback)  -> True if at least one element passes the test.
+// every(callback) -> True if every element passes the test.
+// filter(callback) -> Returns all elements that pass the test.
+//
+// Important:
+// - some() stops after finding the first match.
+// - every() stops after finding the first failure.
+// - These methods do not modify the original array.
+// - An empty array makes some() return false and every() return true.
+*/
