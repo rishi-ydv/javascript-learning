@@ -1384,3 +1384,111 @@ console.log(groupedAccounts);
 // - Groups with no matching elements are not created.
 // - This method is available in modern JavaScript environments.
 */
+
+
+
+/*
+///////////////////////////////////////
+// More Ways of Creating and Filling Arrays
+
+// ===============================================
+// 1. Creating arrays with the Array constructor
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+
+// The Array constructor can also create an array from individual values.
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+// ===============================================
+// 2. Creating an empty array with a specific length
+
+// Passing a single number creates an array with that length,
+// but its elements are empty slots (not actual undefined values).
+const x = new Array(7);
+
+console.log(x); // [empty × 7]
+
+// map() skips empty slots, so this does not fill the array.
+// console.log(x.map(() => 5));
+
+// ===============================================
+// 3. Using fill()
+
+// fill(value, start, end) fills array positions with a value.
+// The start index is included, but the end index is excluded.
+
+// Fill indexes 3 and 4 with 1.
+x.fill(1, 3, 5);
+console.log(x); // [empty × 3, 1, 1, empty × 2]
+
+// Fill every position with 1.
+x.fill(1);
+console.log(x); // [1, 1, 1, 1, 1, 1, 1]
+
+// fill() also modifies an existing array.
+arr.fill(23, 2, 6);
+// Replace indexes 2, 3, 4, and 5 with 23.
+console.log(arr); // [1, 2, 23, 23, 23, 23, 7]
+
+// ===============================================
+// 4. Using Array.from()
+
+// Array.from() creates an array from an array-like object.
+// Here, { length: 7 } describes an array-like object with 7 positions.
+// The mapping callback returns 1 for every position.
+const y = Array.from({ length: 7 }, () => 1);
+
+console.log(y); // [1, 1, 1, 1, 1, 1, 1]
+
+// The callback receives the current value and index.
+// The underscore (_) indicates that the first argument is unused.
+// Generate numbers from 1 through 7 using the index.
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+
+console.log(z); // [1, 2, 3, 4, 5, 6, 7]
+
+// ===============================================
+// 5. Converting DOM elements into an array
+
+// When the balance label is clicked, read the movement values
+// displayed in elements with the class 'movements__value'.
+labelBalance.addEventListener('click', function () {
+  // querySelectorAll() returns a NodeList.
+  // Array.from() converts it into an array and transforms each element:
+  // 1. Read its text content.
+  // 2. Remove the euro symbol.
+  // 3. Convert the remaining text into a number.
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', ''))
+  );
+
+  console.log(movementsUI); // Array of numeric movement values.
+
+  // The spread operator converts the NodeList into an array,
+  // but it does not transform the elements into numbers.
+  const movementsUI2 = [
+    ...document.querySelectorAll('.movements__value'),
+  ];
+
+  console.log(movementsUI2); // Array of DOM elements.
+});
+
+// ===============================================
+// QUICK REVISION
+//
+// new Array(7) -> Creates an array with 7 empty slots.
+// fill(value, start, end) -> Fills positions and mutates the array.
+// Array.from(source) -> Creates an array from an iterable or array-like object.
+// Array.from(source, mapFn) -> Creates and transforms an array in one step.
+// [...iterable] -> Creates an array from an iterable.
+//
+// Important:
+// - fill() modifies the original array.
+// - Array.from() creates a new array.
+// - map() skips empty slots, while Array.from() creates values for each
+//   position of an array-like object with a length.
+// - The spread operator copies the elements but does not transform them.
+// - Array.from() is useful for converting NodeLists and other
+//   array-like objects into arrays.
+*/
