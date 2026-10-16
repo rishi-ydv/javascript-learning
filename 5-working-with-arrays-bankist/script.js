@@ -1492,3 +1492,80 @@ labelBalance.addEventListener('click', function () {
 // - Array.from() is useful for converting NodeLists and other
 //   array-like objects into arrays.
 */
+
+/*
+///////////////////////////////////////
+// Non-Destructive Alternatives:
+// toReversed(), toSorted(), toSpliced(), and with()
+
+console.log(movements);
+
+// ===============================================
+// 1. toReversed() — reverse without mutation
+
+// toReversed() returns a new array with the elements in reverse order.
+// Unlike reverse(), it does NOT modify the original movements array.
+const reversedMov = movements.toReversed();
+
+console.log(reversedMov); // Reversed copy.
+console.log(movements);   // Original array remains unchanged.
+
+// ===============================================
+// 2. toSorted() — sort without mutation
+
+// toSorted() returns a new sorted array.
+// Unlike sort(), it does NOT modify the original array.
+
+// Example: sort movements in ascending numerical order.
+const sortedMovements = movements.toSorted((a, b) => a - b);
+
+console.log(sortedMovements);
+console.log(movements); // Original array remains unchanged.
+
+// ===============================================
+// 3. toSpliced() — splice without mutation
+
+// toSpliced() returns a new array with elements removed, added, or replaced.
+// Unlike splice(), it does NOT modify the original array.
+
+// Example: remove 2 elements starting at index 1.
+const splicedMovements = movements.toSpliced(1, 2);
+
+console.log(splicedMovements);
+console.log(movements); // Original array remains unchanged.
+
+// ===============================================
+// 4. with() — replace an element without mutation
+
+// with(index, value) returns a new array with the specified element replaced.
+// Unlike direct assignment, it does NOT modify the original array.
+
+// Traditional mutation:
+// movements[1] = 2000;
+
+const newMovements = movements.with(1, 2000);
+
+console.log(newMovements); // New array with index 1 replaced by 2000.
+console.log(movements);    // Original array remains unchanged.
+
+// ===============================================
+// QUICK REVISION
+//
+// reverse()     -> Reverses the original array.
+// toReversed()  -> Returns a reversed copy.
+//
+// sort()        -> Sorts the original array.
+// toSorted()    -> Returns a sorted copy.
+//
+// splice()      -> Removes, adds, or replaces elements in the original.
+// toSpliced()   -> Returns a modified copy.
+//
+// arr[index] = value -> Replaces an element in the original array.
+// with(index, value) -> Returns a copy with that element replaced.
+//
+// Important:
+// - These non-destructive methods return new arrays.
+// - The original array remains unchanged.
+// - They are useful for predictable data transformations.
+// - These methods are available in modern JavaScript environments.
+*/
