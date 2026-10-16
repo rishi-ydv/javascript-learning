@@ -1299,3 +1299,88 @@ console.log(movements); // Largest to smallest.
 // To preserve the original array, make a copy before sorting:
 // const sortedMovements = [...movements].sort((a, b) => a - b);
 */
+
+
+
+/*
+///////////////////////////////////////
+// Array Grouping with Object.groupBy()
+
+console.log(movements);
+
+// ===============================================
+// 1. Grouping movements into deposits and withdrawals
+
+// Object.groupBy() groups array elements based on the key returned
+// by the callback function.
+//
+// Positive movements are grouped as 'deposits'.
+// Zero and negative movements are grouped as 'withdrawals'.
+const groupedMovements = Object.groupBy(
+  movements,
+  movement => (movement > 0 ? 'deposits' : 'withdrawals')
+);
+
+console.log(groupedMovements);
+
+// Example structure:
+// {
+//   deposits: [200, 450, 3000, 70, 1300],
+//   withdrawals: [-400, -650, -130]
+// }
+
+// ===============================================
+// 2. Grouping accounts by activity level
+
+// Count the number of movements for each account.
+// Then assign an activity category based on that count.
+const groupedByActivity = Object.groupBy(accounts, account => {
+  const movementCount = account.movements.length;
+
+  if (movementCount >= 8) return 'very active';
+  if (movementCount >= 4) return 'active';
+  if (movementCount >= 1) return 'moderate';
+
+  // Accounts with no movements are considered inactive.
+  return 'inactive';
+});
+
+console.log(groupedByActivity);
+
+// ===============================================
+// 3. Grouping accounts by account type
+
+// Traditional approach:
+// const groupedAccounts = Object.groupBy(
+//   accounts,
+//   account => account.type
+// );
+
+// Destructuring extracts the type property directly from each account.
+// This is a concise way to write the same grouping callback.
+const groupedAccounts = Object.groupBy(
+  accounts,
+  ({ type }) => type
+);
+
+console.log(groupedAccounts);
+
+// ===============================================
+// QUICK REVISION
+//
+// Object.groupBy(array, callback):
+// - Calls the callback for each array element.
+// - Uses the returned value as the group key.
+// - Returns an object whose properties contain arrays of elements.
+//
+// Common uses:
+// - Group deposits and withdrawals.
+// - Group accounts by activity level.
+// - Group objects by a property such as account type.
+//
+// Important:
+// - Object.groupBy() does not modify the original array.
+// - Each group contains the original elements, not copies.
+// - Groups with no matching elements are not created.
+// - This method is available in modern JavaScript environments.
+*/
