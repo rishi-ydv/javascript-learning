@@ -1214,3 +1214,88 @@ const heaviestFetchBreed = Math.max(...fetchWeights);
 console.log(fetchWeights);
 console.log(heaviestFetchBreed);
 */
+
+
+
+/*
+///////////////////////////////////////
+// Sorting Arrays
+
+// ===============================================
+// 1. Sorting strings
+
+const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+
+// sort() sorts strings alphabetically by default.
+// It compares string values according to their UTF-16 code units.
+// The original array is modified.
+console.log(owners.sort()); // ['Adam', 'Jonas', 'Martha', 'Zach']
+
+// The original owners array is now sorted too.
+console.log(owners);
+
+// ===============================================
+// 2. Sorting numbers
+
+console.log(movements);
+
+// A comparison function receives two elements: a and b.
+//
+// If the function returns a negative number, a comes before b.
+// If it returns a positive number, b comes before a.
+// If it returns 0, their relative order is treated as equal
+// by the comparison function.
+
+// ===============================================
+// 3. Sorting numbers in ascending order
+
+// Traditional comparison function:
+// movements.sort((a, b) => {
+//   if (a > b) return 1;  // Put b before a.
+//   if (a < b) return -1; // Put a before b.
+//   return 0;             // They are equal.
+// });
+
+// Shorter version:
+// a - b < 0  -> a comes before b.
+// a - b > 0  -> b comes before a.
+movements.sort((a, b) => a - b);
+
+console.log(movements); // Smallest to largest.
+
+// ===============================================
+// 4. Sorting numbers in descending order
+
+// Traditional comparison function:
+// movements.sort((a, b) => {
+//   if (a > b) return -1; // Put a before b.
+//   if (a < b) return 1;  // Put b before a.
+//   return 0;             // They are equal.
+// });
+
+// b - a reverses the numeric sorting order.
+movements.sort((a, b) => b - a);
+
+console.log(movements); // Largest to smallest.
+
+// ===============================================
+// QUICK REVISION
+//
+// sort() -> Sorts an array and modifies the original array.
+//
+// Strings:
+// - Sorted by default according to UTF-16 code units.
+// - Default sorting is not locale-aware alphabetical sorting.
+//
+// Numbers:
+// - sort((a, b) => a - b) -> Ascending order.
+// - sort((a, b) => b - a) -> Descending order.
+//
+// Comparison function:
+// - Negative result -> a before b.
+// - Positive result -> b before a.
+// - Zero -> Treat a and b as equal for sorting.
+//
+// To preserve the original array, make a copy before sorting:
+// const sortedMovements = [...movements].sort((a, b) => a - b);
+*/
