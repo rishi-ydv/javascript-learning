@@ -184,6 +184,29 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username,
+    );
+    console.log(index);
+    // .indexOf(23)
+
+    // Delete account
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+
+  inputCloseUsername.value = inputClosePin.value = '';
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -914,8 +937,6 @@ console.log(account); // The matching account object, or undefined if not found.
 // Strict equality (===) is used to compare the account owner's name.
 */
 
-
-
 /*
 ///////////////////////////////////////
 // The New findLast() and findLastIndex() Methods
@@ -970,7 +991,6 @@ if (latestLargeMovementIndex !== -1) {
 // - findIndex() and findLastIndex() return -1 when no match is found.
 // - These methods do not modify the original array.
 */
-
 
 /*
 ///////////////////////////////////////
@@ -1039,7 +1059,6 @@ console.log(movements.filter(deposit));
 // - An empty array makes some() return false and every() return true.
 */
 
-
 /*
 ///////////////////////////////////////
 // flat() and flatMap()
@@ -1106,8 +1125,6 @@ console.log(overallBalance2);
 // - flatMap() is useful when each input element produces an array
 //   and you want a single combined array.
 */
-
-
 
 ///////////////////////////////////////
 // Coding Challenge #4
@@ -1215,8 +1232,6 @@ console.log(fetchWeights);
 console.log(heaviestFetchBreed);
 */
 
-
-
 /*
 ///////////////////////////////////////
 // Sorting Arrays
@@ -1300,8 +1315,6 @@ console.log(movements); // Largest to smallest.
 // const sortedMovements = [...movements].sort((a, b) => a - b);
 */
 
-
-
 /*
 ///////////////////////////////////////
 // Array Grouping with Object.groupBy()
@@ -1384,8 +1397,6 @@ console.log(groupedAccounts);
 // - Groups with no matching elements are not created.
 // - This method is available in modern JavaScript environments.
 */
-
-
 
 /*
 ///////////////////////////////////////
