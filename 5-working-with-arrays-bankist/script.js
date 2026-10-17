@@ -1580,3 +1580,140 @@ console.log(movements);    // Original array remains unchanged.
 // - They are useful for predictable data transformations.
 // - These methods are available in modern JavaScript environments.
 */
+
+
+/*
+///////////////////////////////////////
+// Array Methods Practice
+
+// ===============================================
+// 1. Calculate the total sum of all deposits
+
+// Step 1: flatMap() combines all account movements into one array.
+// Step 2: filter() keeps only positive movements (deposits).
+// Step 3: reduce() adds all deposits together, starting from 0.
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, cur) => sum + cur, 0);
+
+console.log(bankDepositSum);
+
+// ===============================================
+// 2. Count deposits of at least 1,000
+
+// Alternative using filter():
+// const numDeposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000)
+//   .length;
+
+// Using reduce(), increment the count whenever a movement is >= 1,000.
+// Otherwise, keep the existing count.
+//
+// Note: count + 1 is clearer than ++count here because we only need
+// to calculate and return the next count.
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+
+console.log(numDeposits1000);
+
+// ===============================================
+// Understanding the prefix increment operator (++a)
+
+// ++a increments a first, then returns the updated value.
+let a = 10;
+console.log(++a); // 11
+console.log(a);   // 11
+
+// For comparison:
+// a++ returns the old value first, then increments a.
+
+// ===============================================
+// 3. Calculate total deposits and withdrawals separately
+
+// Start with an object containing two totals.
+// For each movement:
+// - Positive values are added to deposits.
+// - Negative values are added to withdrawals.
+//
+// Computed property syntax lets us choose the property name dynamically.
+// The accumulator object is updated and returned on every iteration.
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      // Select the property based on whether the movement is positive.
+      sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 },
+  );
+
+console.log(deposits, withdrawals);
+
+// Note: withdrawals remain negative because their original values
+// are negative. Use Math.abs(withdrawals) if you need a positive total.
+
+// ===============================================
+// 4. Convert a sentence into title case
+
+// Example:
+// 'this is a nice title' -> 'This Is a Nice Title'
+
+// Capitalize the first character and keep the rest of the word lowercase.
+const convertTitleCase = function (title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+
+  // These short words stay lowercase unless they are the first word.
+  const exceptions = [
+    'a',
+    'an',
+    'and',
+    'the',
+    'but',
+    'or',
+    'on',
+    'in',
+    'with',
+  ];
+
+  // Convert the whole title to lowercase first.
+  // Split into words, capitalize non-exception words, and join them again.
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+    .join(' ');
+
+  // Always capitalize the first word, even if it is an exception.
+  return capitalize(titleCase);
+};
+
+console.log(convertTitleCase('this is a nice title'));
+// This Is a Nice Title
+
+console.log(convertTitleCase('this is a LONG title but not too long'));
+// This Is a Long Title but Not Too Long
+
+console.log(convertTitleCase('and here is another title with an EXAMPLE'));
+// And Here Is Another Title with an Example
+
+// ===============================================
+// QUICK REVISION
+//
+// flatMap() -> Maps each element and flattens the result by one level.
+// filter()  -> Keeps elements that satisfy a condition.
+// reduce()  -> Combines elements into one accumulated result.
+// split()   -> Splits a string into an array.
+// map()     -> Transforms each word.
+// join()    -> Combines an array into a string.
+//
+// Important:
+// - Use reduce() to calculate totals or counts.
+// - Use count + 1 for a clear counter update in a reduce() callback.
+// - The withdrawals total remains negative in this implementation.
+// - Title-case rules vary; this function uses your chosen exception list.
+*/
