@@ -64,10 +64,12 @@ const inputClosePin = document.querySelector('.form__input--pin');
 //////////////////////////////////////////////////////
 // Functions
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -206,7 +208,6 @@ btnClose.addEventListener('click', function (e) {
 
   inputCloseUsername.value = inputClosePin.value = '';
 });
-
 
 let sorted = false;
 btnSort.addEventListener('click', function (e) {
@@ -1589,7 +1590,6 @@ console.log(movements);    // Original array remains unchanged.
 // - These methods are available in modern JavaScript environments.
 */
 
-
 /*
 ///////////////////////////////////////
 // Array Methods Practice
@@ -1725,7 +1725,6 @@ console.log(convertTitleCase('and here is another title with an EXAMPLE'));
 // - The withdrawals total remains negative in this implementation.
 // - Title-case rules vary; this function uses your chosen exception list.
 */
-
 
 ///////////////////////////////////////
 // Coding Challenge #5
