@@ -369,4 +369,133 @@ console.log(Number.isInteger(23 / 0)); // false: Infinity is not an integer
 
 */
 
+/*
+///////////////////////////////////////
+// Math and Rounding
 
+// ===============================================
+// 1. Square roots and powers
+
+// Math.sqrt() calculates the square root of a number.
+console.log(Math.sqrt(25)); // 5
+
+// The exponent 1 / 2 is another way to calculate a square root.
+console.log(25 ** (1 / 2)); // 5
+
+// The exponent 1 / 3 calculates the cube root.
+console.log(8 ** (1 / 3)); // 2
+
+// ===============================================
+// 2. Finding maximum and minimum values
+
+// Math.max() returns the largest of the supplied arguments.
+console.log(Math.max(5, 18, 23, 11, 2)); // 23
+
+// Numeric strings are converted to numbers during this calculation.
+console.log(Math.max(5, 18, '23', 11, 2)); // 23
+
+// A string such as '23px' cannot be converted to a number.
+// Math.max() returns NaN if an argument cannot be converted to a number.
+console.log(Math.max(5, 18, '23px', 11, 2)); // NaN
+
+// Math.min() returns the smallest of the supplied arguments.
+console.log(Math.min(5, 18, 23, 11, 2)); // 2
+
+// ===============================================
+// 3. Calculating the area of a circle
+
+// Area = π × radius²
+// Number.parseFloat() extracts the numeric prefix from '10px'.
+// The radius is therefore 10, and the area is approximately 314.16.
+console.log(Math.PI * Number.parseFloat('10px') ** 2);
+
+// ===============================================
+// 4. Generating random numbers
+
+// Math.random() returns a pseudo-random number in the range [0, 1).
+// Multiplying by 6 gives a value in [0, 6).
+// Math.trunc() removes the decimal part, producing 0 through 5.
+// Adding 1 gives a random integer from 1 through 6, like a die.
+console.log(Math.trunc(Math.random() * 6) + 1);
+
+// Generate a random integer between min and max, inclusive.
+// max - min + 1 gives the number of possible integer values.
+// Math.random() * that range produces a value from 0 up to,
+// but not including, the range size.
+// Math.floor() converts it into an integer offset.
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
+
+console.log(randomInt(10, 20)); // Integer from 10 through 20.
+console.log(randomInt(0, 3));   // Integer from 0 through 3.
+
+// ===============================================
+// 5. Rounding positive numbers to integers
+
+// Math.round() rounds to the nearest integer.
+// Fractions of 0.5 or greater round toward positive infinity.
+console.log(Math.round(23.3)); // 23
+console.log(Math.round(23.9)); // 24
+
+// Math.ceil() rounds toward positive infinity.
+console.log(Math.ceil(23.3)); // 24
+console.log(Math.ceil(23.9)); // 24
+
+// Math.floor() rounds toward negative infinity.
+console.log(Math.floor(23.3)); // 23
+
+// Math.floor() converts the numeric string to a number first.
+console.log(Math.floor('23.9')); // 23
+
+// Math.trunc() removes the fractional part, moving toward zero.
+console.log(Math.trunc(23.3)); // 23
+
+// ===============================================
+// 6. Understanding negative numbers
+
+// Math.trunc() removes the decimal part and moves toward zero.
+console.log(Math.trunc(-23.3)); // -23
+
+// Math.floor() rounds down toward negative infinity.
+console.log(Math.floor(-23.3)); // -24
+
+// Notice that floor() and trunc() give different results
+// for negative numbers with a fractional part.
+
+// ===============================================
+// 7. Rounding decimal places with toFixed()
+
+// toFixed() returns a STRING with the specified number of decimal places.
+// It rounds the number to that precision and pads zeros if necessary.
+console.log((2.7).toFixed(0));   // '3'
+console.log((2.7).toFixed(3));   // '2.700'
+console.log((2.345).toFixed(2)); // '2.35'
+
+// Use unary plus (+) to convert the formatted string back to a number.
+// Trailing zeros are not preserved in a numeric value.
+console.log(+(2.345).toFixed(2)); // 2.35
+
+// ===============================================
+// QUICK REVISION
+//
+// Math.sqrt(x) -> Square root.
+// x ** (1 / 2) -> Square root using exponentiation.
+// x ** (1 / 3) -> Cube root.
+//
+// Math.max(...) -> Largest argument.
+// Math.min(...) -> Smallest argument.
+//
+// Math.random() -> Pseudo-random number in [0, 1).
+// Math.floor()  -> Rounds toward negative infinity.
+// Math.ceil()   -> Rounds toward positive infinity.
+// Math.trunc()  -> Removes the decimal part, toward zero.
+// Math.round()  -> Rounds to the nearest integer.
+//
+// number.toFixed(digits) -> Returns a formatted string.
+//
+// Important:
+// - Math.floor(-23.3) is -24, but Math.trunc(-23.3) is -23.
+// - Math.random() is not suitable for security-sensitive randomness.
+// - toFixed() returns a string, even when digits is 0.
+// - Floating-point representation can affect decimal rounding.
+*/
