@@ -499,3 +499,79 @@ console.log(+(2.345).toFixed(2)); // 2.35
 // - toFixed() returns a string, even when digits is 0.
 // - Floating-point representation can affect decimal rounding.
 */
+
+/*
+///////////////////////////////////////
+// The Remainder Operator (%)
+
+// ===============================================
+// 1. Understanding the remainder operator
+
+// % returns the remainder after division.
+// 5 = (2 * 2) + 1, so the remainder is 1.
+console.log(5 % 2); // 1
+console.log(5 / 2); // 2.5
+
+// 8 = (2 * 3) + 2, so the remainder is 2.
+console.log(8 % 3); // 2
+console.log(8 / 3); // 2.666...
+
+// If a number is divisible by another number, the remainder is 0.
+console.log(6 % 2); // 0
+console.log(6 / 2); // 3
+
+// 7 divided by 2 leaves a remainder of 1.
+console.log(7 % 2); // 1
+console.log(7 / 2); // 3.5
+
+// ===============================================
+// 2. Checking whether a number is even
+
+// Even numbers are divisible by 2 with no remainder.
+// Therefore, n % 2 === 0 means n is even.
+const isEven = n => n % 2 === 0;
+
+console.log(isEven(8));   // true
+console.log(isEven(23));  // false
+console.log(isEven(514)); // true
+
+// ===============================================
+// 3. Using the remainder operator to style DOM elements
+
+// When the balance label is clicked, select all movement rows
+// and convert the NodeList into an array using the spread operator.
+labelBalance.addEventListener('click', function () {
+  [...document.querySelectorAll('.movements__row')].forEach(
+    function (row, i) {
+      // Highlight rows with even indexes: 0, 2, 4, 6, ...
+      if (i % 2 === 0) {
+        row.style.backgroundColor = 'orangered';
+      }
+
+      // Highlight rows whose indexes are divisible by 3:
+      // 0, 3, 6, 9, ...
+      //
+      // This runs after the first condition, so blue overrides
+      // orangered when an index satisfies both conditions.
+      if (i % 3 === 0) {
+        row.style.backgroundColor = 'blue';
+      }
+    }
+  );
+});
+
+// ===============================================
+// QUICK REVISION
+//
+// n % 2 === 0 -> Even number.
+// n % 2 !== 0 -> Odd number (for integers).
+// n % 3 === 0 -> Divisible by 3.
+//
+// Important:
+// - % returns the remainder, not the division result.
+// - An even index satisfies i % 2 === 0.
+// - Indexes divisible by 3 satisfy i % 3 === 0.
+// - Both conditions can be true for the same index.
+// - Since the blue style is applied second, it takes priority
+//   when both conditions match.
+*/
