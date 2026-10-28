@@ -251,3 +251,122 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+
+/*
+///////////////////////////////////////
+// Converting and Checking Numbers
+
+// ===============================================
+// 1. Understanding JavaScript numbers
+
+// JavaScript uses the Number type for both integers and decimals.
+// 23 and 23.0 represent the same numeric value.
+console.log(23 === 23.0); // true
+
+// JavaScript uses IEEE 754 double-precision floating-point numbers.
+// Some decimal fractions cannot be represented exactly in binary.
+console.log(0.1 + 0.2); // 0.30000000000000004
+
+// Therefore, this comparison is false.
+console.log(0.1 + 0.2 === 0.3); // false
+
+// ===============================================
+// 2. Converting strings to numbers
+
+// Number() explicitly converts a value to a number.
+console.log(Number('23')); // 23
+
+// The unary plus (+) operator also converts a value to a number.
+console.log(+'23'); // 23
+
+// ===============================================
+// 3. Parsing integers
+
+// Number.parseInt() reads an integer from the beginning of a string.
+// The second argument specifies the radix (base); 10 means decimal.
+console.log(Number.parseInt('30px', 10)); // 30
+
+// Parsing fails when the string does not begin with a valid integer.
+console.log(Number.parseInt('e23', 10)); // NaN
+
+// Leading whitespace is ignored.
+// parseInt() stops when it reaches the decimal point.
+console.log(Number.parseInt('  2.5rem  ', 10)); // 2
+
+// ===============================================
+// 4. Parsing floating-point numbers
+
+// Number.parseFloat() reads a number, including its decimal part,
+// from the beginning of a string and stops at the first invalid character.
+console.log(Number.parseFloat('  2.5rem  ')); // 2.5
+
+// The global parseFloat() function also works, but using
+// Number.parseFloat() makes the relationship to Number explicit.
+// console.log(parseFloat('  2.5rem  '));
+
+// ===============================================
+// 5. Checking for NaN
+
+// NaN means "Not-a-Number" and often indicates a failed conversion
+// or an invalid mathematical result.
+//
+// Number.isNaN() checks whether the value itself is NaN.
+// It does NOT convert strings to numbers first.
+console.log(Number.isNaN(20));       // false
+console.log(Number.isNaN('20'));     // false
+console.log(Number.isNaN(+'20X'));   // true: conversion produces NaN
+console.log(Number.isNaN(23 / 0));   // false: result is Infinity
+
+// ===============================================
+// 6. Checking whether a value is finite
+
+// Number.isFinite() returns true only for numeric values that are
+// neither Infinity, -Infinity, nor NaN.
+// It does not convert strings to numbers.
+console.log(Number.isFinite(20));     // true
+console.log(Number.isFinite('20'));   // false: this is a string
+console.log(Number.isFinite(+'20X')); // false: this is NaN
+console.log(Number.isFinite(23 / 0)); // false: result is Infinity
+
+// ===============================================
+// 7. Checking whether a value is an integer
+
+// Number.isInteger() checks whether a value is a finite number
+// with no fractional part.
+console.log(Number.isInteger(23));     // true
+console.log(Number.isInteger(23.0));   // true: same value as 23
+console.log(Number.isInteger(23 / 0)); // false: Infinity is not an integer
+
+// ===============================================
+// QUICK REVISION
+//
+// Number(value) / +value
+// -> Convert a value to a number.
+//
+// Number.parseInt(value, radix)
+// -> Parse an integer from the start of a string.
+//
+// Number.parseFloat(value)
+// -> Parse a decimal number from the start of a string.
+//
+// Number.isNaN(value)
+// -> Check whether the value is NaN without converting it.
+//
+// Number.isFinite(value)
+// -> Check whether the value is a finite number.
+//
+// Number.isInteger(value)
+// -> Check whether the value is an integer.
+//
+// Important:
+// - 23 === 23.0 is true.
+// - Floating-point calculations can produce small precision errors.
+// - parseInt('30px', 10) returns 30, but Number('30px') returns NaN.
+// - Number.isNaN('20') is false because '20' is a string, not NaN.
+// - Division of a nonzero number by zero produces Infinity.
+// - Use Number.isFinite() to reject NaN and Infinity in numeric checks.
+
+*/
+
+
