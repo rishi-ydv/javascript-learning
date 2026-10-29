@@ -575,3 +575,68 @@ labelBalance.addEventListener('click', function () {
 // - Since the blue style is applied second, it takes priority
 //   when both conditions match.
 */
+
+/*
+///////////////////////////////////////
+// Numeric Separators (_)
+
+// ===============================================
+// 1. Making large numbers easier to read
+
+// Underscores separate digits into readable groups.
+// They do not affect the numeric value.
+const diameter = 287_460_000_000;
+
+console.log(diameter); // 287460000000
+
+// Numeric separators can also be used in smaller numbers.
+// Here, 345_99 is the number 34599, not a decimal value.
+const price = 345_99;
+
+console.log(price); // 34599
+
+// These two declarations have the same numeric value.
+// The underscores are only for readability.
+const transferFee1 = 15_00;
+const transferFee2 = 1_500;
+
+console.log(transferFee1); // 1500
+console.log(transferFee2); // 1500
+
+// ===============================================
+// 2. Numeric separators with decimal numbers
+
+// Separators can also be used in the integer or fractional digits
+// of a numeric literal.
+const PI = 3.1415;
+
+console.log(PI); // 3.1415
+
+// Example with a separator in the fractional part:
+// const preciseValue = 3.141_592_653;
+
+// ===============================================
+// 3. Numeric separators in strings
+
+// Numeric separators are supported in JavaScript numeric literals,
+// but they are NOT valid characters in a string-to-number conversion.
+console.log(Number('230_000')); // NaN
+
+// parseInt() reads the integer prefix and stops at the underscore.
+// It therefore parses only the digits before the underscore.
+console.log(parseInt('230_000')); // 230
+
+// ===============================================
+// QUICK REVISION
+//
+// 287_460_000_000 -> 287460000000
+// 1_500           -> 1500
+//
+// Important:
+// - Underscores improve readability; they do not change numeric values.
+// - Numeric separators are allowed in numeric literals.
+// - They cannot appear at the beginning or end of a numeric literal,
+//   or next to a decimal point.
+// - Strings containing underscores are not automatically interpreted
+//   as numeric literals by Number() or parseInt().
+*/
