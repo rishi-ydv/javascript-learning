@@ -252,7 +252,6 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 // LECTURES
 
-
 /*
 ///////////////////////////////////////
 // Converting and Checking Numbers
@@ -639,4 +638,109 @@ console.log(parseInt('230_000')); // 230
 //   or next to a decimal point.
 // - Strings containing underscores are not automatically interpreted
 //   as numeric literals by Number() or parseInt().
+*/
+
+
+/*
+///////////////////////////////////////
+// Working with BigInt
+
+// ===============================================
+// 1. Understanding the safe integer limit of Number
+
+// JavaScript Number uses IEEE 754 double-precision floating-point format.
+// Integers are guaranteed to be represented exactly only up to
+// Number.MAX_SAFE_INTEGER (2 ** 53 - 1).
+console.log(2 ** 53 - 1); // 9007199254740991
+console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
+
+// Beyond the safe integer limit, different integers can produce
+// the same Number value because of floating-point precision limits.
+console.log(2 ** 53 + 1); // 9007199254740992 (rounded)
+console.log(2 ** 53 + 2); // 9007199254740994
+console.log(2 ** 53 + 3); // 9007199254740996 (rounded)
+console.log(2 ** 53 + 4); // 9007199254740996
+
+// ===============================================
+// 2. Creating BigInt values
+
+// Add the suffix n to an integer literal to create a BigInt.
+// BigInt can represent integers larger than Number's safe integer limit.
+console.log(4838430248342043823408394839483204n);
+
+// Convert a safe integer Number to BigInt.
+console.log(BigInt(48384302)); // 48384302n
+
+// Important: converting an already-rounded Number to BigInt
+// cannot recover precision that was lost earlier.
+
+// ===============================================
+// 3. Arithmetic operations with BigInt
+
+// BigInt values can be added, subtracted, multiplied, and divided
+// by other BigInt values.
+console.log(10000n + 10000n); // 20000n
+
+console.log(36286372637263726376237263726372632n * 10000000n);
+
+// Math methods generally expect Number values, not BigInt values.
+// This throws a TypeError:
+// console.log(Math.sqrt(16n));
+
+// ===============================================
+// 4. Mixing BigInt and Number
+
+const huge = 20289830237283728378237n;
+const num = 23;
+
+// Convert num to BigInt before multiplying.
+// BigInt(num) works here because num is a safe integer.
+console.log(huge * BigInt(num));
+
+// ===============================================
+// 5. Comparing BigInt with Number
+
+// Relational comparisons can compare BigInt and Number values.
+console.log(20n > 15); // true
+
+// Strict equality checks both value and type.
+console.log(20n === 20); // false: BigInt vs. Number
+
+// typeof identifies BigInt values.
+console.log(typeof 20n); // 'bigint'
+
+// Loose equality allows type conversion for this comparison.
+console.log(20n == '20'); // true
+
+// ===============================================
+// 6. Combining BigInt with strings
+
+// When either operand is a string, + performs string concatenation.
+console.log(huge + ' is REALLY big!!!');
+// '20289830237283728378237 is REALLY big!!!'
+
+// ===============================================
+// 7. BigInt division
+
+// BigInt division truncates the fractional part toward zero.
+console.log(11n / 3n); // 3n
+
+// Number division preserves the fractional part.
+console.log(10 / 3); // 3.3333333333333335
+
+// ===============================================
+// QUICK REVISION
+//
+// BigInt -> Represents integers beyond Number's safe integer range.
+// 123n   -> BigInt literal.
+// BigInt(value) -> Converts an integer value to BigInt.
+//
+// Important:
+// - Do not mix BigInt and Number in arithmetic operations.
+// - Convert explicitly when necessary.
+// - BigInt does not support fractional values.
+// - BigInt division truncates toward zero.
+// - Use === to compare both value and type.
+// - Number.MAX_SAFE_INTEGER is 2 ** 53 - 1.
+// - Converting an unsafe Number to BigInt does not restore lost precision.
 */
