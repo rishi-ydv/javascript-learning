@@ -640,7 +640,6 @@ console.log(parseInt('230_000')); // 230
 //   as numeric literals by Number() or parseInt().
 */
 
-
 /*
 ///////////////////////////////////////
 // Working with BigInt
@@ -743,4 +742,74 @@ console.log(10 / 3); // 3.3333333333333335
 // - Use === to compare both value and type.
 // - Number.MAX_SAFE_INTEGER is 2 ** 53 - 1.
 // - Converting an unsafe Number to BigInt does not restore lost precision.
+*/
+
+/*
+///////////////////////////////////////
+// Creating Dates
+
+// ===============================================
+// 1. Creating a Date for the current date and time
+
+// new Date() without arguments returns the current date and time.
+const now = new Date();
+console.log(now);
+
+// ===============================================
+// 2. Creating Dates from strings
+
+// JavaScript parses the supplied date string into a Date object.
+// The exact interpretation can depend on the string format and environment.
+console.log(new Date('Aug 02 2020 18:05:41'));
+
+console.log(new Date('December 24, 2015'));
+
+// If account1.movementsDates[0] contains a valid date string,
+// it can be used to create a Date object.
+console.log(new Date(account1.movementsDates[0]));
+
+// ===============================================
+// 3. Creating Dates using individual components
+
+// Arguments: year, monthIndex, day, hours, minutes, seconds.
+// IMPORTANT: monthIndex starts at 0.
+// 0 = January, 1 = February, ..., 10 = November, 11 = December.
+console.log(new Date(2037, 10, 19, 15, 23, 5));
+// November 19, 2037, at 15:23:05 in the local time zone.
+
+// JavaScript automatically normalizes out-of-range date components.
+// November has 30 days, so day 31 rolls over into December.
+console.log(new Date(2037, 10, 31));
+// December 1, 2037, in the local time zone.
+
+// ===============================================
+// 4. Creating Dates from timestamps
+
+// A timestamp of 0 represents the Unix epoch:
+// January 1, 1970, at 00:00:00 UTC.
+console.log(new Date(0));
+
+// Date timestamps are measured in milliseconds.
+// 3 days × 24 hours × 60 minutes × 60 seconds × 1,000 milliseconds.
+console.log(new Date(3 * 24 * 60 * 60 * 1000));
+// January 4, 1970, at 00:00:00 UTC.
+// The displayed local time may differ depending on the time zone.
+
+// ===============================================
+// QUICK REVISION
+//
+// new Date()                  -> Current date and time.
+// new Date(dateString)        -> Parse a date string.
+// new Date(year, month, day)  -> Create a local date from components.
+// new Date(milliseconds)      -> Create a date from a timestamp.
+//
+// Important:
+// - Numeric month indexes start at 0.
+// - Numeric component dates use the local time zone.
+// - A timestamp of 0 is the Unix epoch: 1970-01-01T00:00:00.000Z.
+// - Date timestamps are measured in milliseconds.
+// - Out-of-range components are normalized automatically.
+// - Date-only ISO strings such as '2020-08-02' are interpreted as UTC,
+//   while date-time strings without a time-zone offset are interpreted
+//   as local time.
 */
