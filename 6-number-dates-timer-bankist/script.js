@@ -155,6 +155,12 @@ const updateUI = function (acc) {
 // Event handlers
 let currentAccount;
 
+
+// FAKED ALWAYS LOGGED IN
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
+
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
