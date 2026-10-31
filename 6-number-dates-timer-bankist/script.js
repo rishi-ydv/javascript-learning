@@ -872,3 +872,43 @@ console.log(new Date(3 * 24 * 60 * 60 * 1000));
 //   while date-time strings without a time-zone offset are interpreted
 //   as local time.
 */
+
+/*
+///////////////////////////////////////
+// Working with Dates
+
+// Create a date: November 19, 2037, at 15:23 (3:23 PM).
+// Remember: The month index starts at 0, so 10 represents November.
+const future = new Date(2037, 10, 19, 15, 23);
+
+console.log(future);
+
+// Get individual date components
+console.log(future.getFullYear()); // 2037 — full year
+console.log(future.getMonth()); // 10 — month index (0 = January, 10 = November)
+console.log(future.getDate()); // 19 — day of the month (1–31)
+console.log(future.getDay()); // 4 — day of the week (0 = Sunday, 4 = Thursday)
+console.log(future.getHours()); // 15 — hours (0–23)
+console.log(future.getMinutes()); // 23 — minutes (0–59)
+console.log(future.getSeconds()); // 0 — seconds (0–59)
+
+// Convert the date into an ISO 8601 string.
+// The output is in UTC, not necessarily your local timezone.
+console.log(future.toISOString());
+
+// Get the timestamp: milliseconds since January 1, 1970 (Unix epoch).
+console.log(future.getTime());
+
+// Convert a timestamp back into a Date object.
+// The timestamp is measured in milliseconds.
+console.log(new Date(2142256980000));
+
+// Get the current timestamp in milliseconds.
+console.log(Date.now());
+
+// Modify the existing date.
+// setFullYear() changes the year while keeping the other date components.
+future.setFullYear(2040);
+
+console.log(future); // Updated date: November 19, 2040, at 15:23
+*/
