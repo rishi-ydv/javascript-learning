@@ -912,3 +912,30 @@ future.setFullYear(2040);
 
 console.log(future); // Updated date: November 19, 2040, at 15:23
 */
+
+/*
+///////////////////////////////////////
+// Operations With Dates
+
+// Create a date: November 19, 2037, at 15:23.
+const future = new Date(2037, 10, 19, 15, 23);
+
+// Convert the Date object into a timestamp (milliseconds).
+// The unary plus (+) performs the same conversion as .getTime().
+console.log(+future);
+
+// Calculate the number of days between two dates.
+const calcDaysPassed = (date1, date2) =>
+  // Subtracting two Date objects automatically converts them into timestamps.
+  // Math.abs() ensures the result is positive, regardless of date order.
+  // Divide by milliseconds per day to convert milliseconds into days.
+  Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+
+// Calculate the difference between April 4 and April 14, 2037.
+const days1 = calcDaysPassed(
+  new Date(2037, 3, 4), // April 4, 2037 (month index 3 = April)
+  new Date(2037, 3, 14), // April 14, 2037
+);
+
+console.log(days1); // 10
+*/
