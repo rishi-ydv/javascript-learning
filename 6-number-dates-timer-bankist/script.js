@@ -955,3 +955,28 @@ const days1 = calcDaysPassed(
 
 console.log(days1); // 10
 */
+
+
+/*
+///////////////////////////////////////
+// Internationalizing Numbers (Intl)
+
+const num = 3884764.23;
+
+// Currency formatting options.
+const options = {
+  style: 'currency',
+  currency: 'EUR',
+};
+
+// Format using different locales.
+console.log('US:      ', new Intl.NumberFormat('en-US', options).format(num));
+console.log('Germany: ', new Intl.NumberFormat('de-DE', options).format(num));
+console.log('Syria:   ', new Intl.NumberFormat('ar-SY', options).format(num));
+
+// Use the browser's preferred language.
+console.log(
+  navigator.language,
+  new Intl.NumberFormat(navigator.language, options).format(num),
+);
+*/
