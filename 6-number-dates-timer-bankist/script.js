@@ -956,7 +956,6 @@ const days1 = calcDaysPassed(
 console.log(days1); // 10
 */
 
-
 /*
 ///////////////////////////////////////
 // Internationalizing Numbers (Intl)
@@ -979,4 +978,45 @@ console.log(
   navigator.language,
   new Intl.NumberFormat(navigator.language, options).format(num),
 );
+*/
+
+
+/*
+///////////////////////////////////////
+// Timers
+
+// -------------------------------------
+// 1. setTimeout()
+
+// Create an array of pizza ingredients.
+const ingredients = ['olives', 'spinach'];
+
+// Schedule a callback function to execute after 3 seconds.
+const pizzaTimer = setTimeout(
+  // The callback receives the ingredients as arguments.
+  (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`),
+
+  3000, // Delay in milliseconds (3000 ms = 3 seconds).
+
+  // Pass the array elements as individual arguments.
+  ...ingredients,
+);
+
+console.log('Waiting...');
+
+// Cancel the scheduled timeout if spinach is included.
+// Since ingredients contains 'spinach', the callback will never execute.
+if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+
+// -------------------------------------
+// 2. setInterval()
+
+// Execute this callback repeatedly every 1 second.
+setInterval(function () {
+  // Create a Date object representing the current date and time.
+  const now = new Date();
+
+  // Display the current date and time.
+  console.log(now);
+}, 1000); // Repeat every 1000 milliseconds (1 second).
 */
